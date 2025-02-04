@@ -72,3 +72,13 @@ function renewToken(req, res) {
   }
   return validRefreshToken;
 }
+
+export async function adminVerify(req, res, next) {
+  if (req.user.isAdmin) {
+    next();
+  } else {
+    return res
+      .status(400)
+      .json({ success: false, message: "Members are not authorised." });
+  }
+}

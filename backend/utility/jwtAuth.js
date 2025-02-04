@@ -36,12 +36,39 @@ export async function verify(req, res, next) {
     process.env.ACCESS_TOKEN_SECRET,
     (err, user) => {
       if (err) {
-        console.log(err);
-        res.status(400).json({ success: false, error: "Not authorised" });
+        if (renewToken(req, res)) {
+          next();
+        } else {
+          res.status(400).json({ success: false, error: "Not authorised" });
+        }
       } else {
         req.user = user;
         next();
       }
     }
   );
+}
+
+function renewToken(req, res) {
+  let validRefreshToken = false;
+  if (req.cookies.refreshToken) {
+    jwt.verify(
+      req.cookies.refreshToken,
+      process.env.REFRESH_TOKEN_SECRET,
+      (err, user) => {
+        if (err) {
+          return res.json({ success: false, error: err.message });
+        } else {
+          const accessToken = generateAccessToken(user);
+          res.cookie("accessToken", accessToken, {
+            maxAge: 15 * 60 * 1000,
+            httpOnly: true,
+          });
+          req.user = user;
+          validRefreshToken = true;
+        }
+      }
+    );
+  }
+  return validRefreshToken;
 }

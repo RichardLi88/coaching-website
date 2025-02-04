@@ -6,3 +6,5 @@ lessonRouter.get("");
 lessonRouter.put("");
 lessonRouter.post("");
 lessonRouter.delete("");
+
+export default lessonRouter;

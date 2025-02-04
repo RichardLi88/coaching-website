@@ -9,6 +9,8 @@
 
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
+  margin: 0px;
+  color: var(--tertiary-color);
 }
 
 p {

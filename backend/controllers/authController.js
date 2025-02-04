@@ -7,6 +7,9 @@ import {
 import RefreshToken from "../schemas/refreshToken.js";
 
 export const signUp = async (req, res, then) => {
+  /*
+  backend function used to validate details, and then register the account to the database
+  */
   //validation of details
   const data = req.body;
   if (
@@ -64,6 +67,9 @@ export const signUp = async (req, res, then) => {
 };
 
 export const login = async (req, res) => {
+  /*
+  backend function used to validate details, then if valid, generate access and response token and log the user in.
+  */
   const data = req.body;
 
   //fetching from database
@@ -75,13 +81,14 @@ export const login = async (req, res) => {
         .status(404)
         .json({ success: false, reason: "unable to find user" });
     }
-
+    //validating password
     const passwordMatch = await bcrypt.compare(data.password, user.password);
     if (passwordMatch) {
+      //removing old refresh token from db
       if (req.cookies.refreshToken) {
-        RefreshToken.findOneAndDelete({ token: req.cookies.refreshToken });
+        RefreshToken.findOneAndDelete({ username: user.username });
       }
-
+      //generating new access and refresh token
       const accessToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
 
@@ -95,7 +102,9 @@ export const login = async (req, res) => {
         httpOnly: true,
       });
 
+      //storing new refresh token to db
       const refreshTokenObject = {
+        username: user.username,
         token: refreshToken,
       };
 
@@ -110,5 +119,24 @@ export const login = async (req, res) => {
     }
   } catch (err) {
     return res.status(500).json({ success: false, error: err.message });
+  }
+};
+
+export const logout = async (req, res) => {
+  /*
+  backend function to log the user out by removing the access and refresh tokens from the cookies, and remove the refreshtoken from database.
+  */
+  try {
+    res.cookie("accessToken", "", { maxAge: 1 });
+    res.cookie("refreshToken", "", { maxAge: 1 });
+    //removing refresh token
+    if (req.cookies.refreshToken) {
+      RefreshToken.findOneAndDelete({ token: req.cookies.refreshToken });
+      res
+        .status(200)
+        .json({ success: true, reason: "logged out successfully" });
+    }
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
   }
 };

@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  --primary-color: #323237;
-  --secondary-color: #cfa616;
-  --tertiary-color: #ffefca;
-  --quaternary-color: #f1c40f;
+  --red-color: 
+  --brown-color: #dcd5d5
+  --skin-color: #bfa6a2;
+  --dark-green-color: #457200;
+  --light-green-color: #7ba638;
 }
 
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
   margin: 0px;
-  color: var(--tertiary-color);
+  color: var(--brown-color);
 }
 
 p {

@@ -1,7 +1,12 @@
 import "../css/Home.css";
 
 function Home() {
-  return <div></div>;
+  return (
+    <>
+      <div className="home-top-container"> </div>
+      <div className="home-bot-container"> </div>
+    </>
+  );
 }
 
 export default Home;

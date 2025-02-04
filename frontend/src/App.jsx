@@ -4,6 +4,7 @@ import About from "./pages/About";
 import Lessons from "./pages/Lessons";
 import NavBar from "./components/NavBar";
 import { Routes, Route } from "react-router-dom";
+import MoreInfo from "./pages/MoreInfo";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/lessons" element={<Lessons />} />
+        <Route path="/more" element={<MoreInfo />} />
       </Routes>
     </>
   );

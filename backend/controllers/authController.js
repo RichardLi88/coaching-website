@@ -1,6 +1,13 @@
 import User from "../schemas/user.js";
+import bcrypt from "bcrypt";
+import {
+  generateAccessToken,
+  generateRefreshToken,
+} from "../utility/jwtAuth.js";
+import RefreshToken from "../schemas/refreshToken.js";
 
-export const signUp = async (req, res) => {
+export const signUp = async (req, res, then) => {
+  //validation of details
   const data = req.body;
   if (
     !data.username ||
@@ -8,19 +15,100 @@ export const signUp = async (req, res) => {
     !data.password ||
     !data.confirmPassword
   ) {
-    return res.status(400).json({ error: "fill in all details" });
+    return res
+      .status(400)
+      .json({ success: false, reason: "fill in all details" });
   }
   if (data.password !== data.confirmPassword) {
-    return res.status(400).json({ error: "passwords do not match" });
+    return res
+      .status(400)
+      .json({ success: false, reason: "passwords do not match" });
   }
 
-  const user = await User.findOne({ username: data.username });
+  //checking if there already exists the username
+  try {
+    const user = await User.findOne({ username: data.username });
 
-  if (user) {
-    return res.status(400).json({ message: "User already exists" });
+    if (user) {
+      return res
+        .status(400)
+        .json({ success: false, reason: "Username is taken" });
+    }
+  } catch (err) {
+    console.log(`error trying to retrieve data from database ${err.message}`);
+    return res.status(500).json({ success: false, error: err.message });
   }
 
-  const newUser = new User(data);
-  newUser.save();
-  res.status(200).json({ success: true, data: newUser });
+  //password hashing using bcrypt
+  try {
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+    const user = {
+      username: data.username,
+      password: hashedPassword,
+      email: data.email,
+      isAdmin: false,
+    };
+    const newUser = new User(user);
+    await newUser.save();
+
+    const { password, ...returnedUser } = newUser.toObject();
+
+    res.status(200).json({
+      success: true,
+      data: returnedUser,
+    });
+  } catch (err) {
+    console.log(`Error when hashing password: ${err.message}`);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+
+export const login = async (req, res) => {
+  const data = req.body;
+
+  //fetching from database
+  try {
+    const user = await User.findOne({ username: data.username });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, reason: "unable to find user" });
+    }
+
+    const passwordMatch = await bcrypt.compare(data.password, user.password);
+    if (passwordMatch) {
+      if (req.cookies.refreshToken) {
+        RefreshToken.findOneAndDelete({ token: req.cookies.refreshToken });
+      }
+
+      const accessToken = generateAccessToken(user);
+      const refreshToken = generateRefreshToken(user);
+
+      res.cookie("accessToken", accessToken, {
+        maxAge: 15 * 60 * 1000,
+        httpOnly: true,
+      });
+
+      res.cookie("refreshToken", refreshToken, {
+        maxAge: 60 * 60 * 1000 * 24 * 7,
+        httpOnly: true,
+      });
+
+      const refreshTokenObject = {
+        token: refreshToken,
+      };
+
+      const newRefreshToken = RefreshToken(refreshTokenObject);
+      await newRefreshToken.save();
+
+      return res.status(200).json({ success: true });
+    } else {
+      return res
+        .status(400)
+        .json({ success: false, reason: "passwords dont match" });
+    }
+  } catch (err) {
+    return res.status(500).json({ success: false, error: err.message });
+  }
 };

@@ -130,12 +130,8 @@ export const logout = async (req, res) => {
     res.cookie("accessToken", "", { maxAge: 1 });
     res.cookie("refreshToken", "", { maxAge: 1 });
     //removing refresh token
-    if (req.cookies.refreshToken) {
-      RefreshToken.findOneAndDelete({ token: req.cookies.refreshToken });
-      res
-        .status(200)
-        .json({ success: true, reason: "logged out successfully" });
-    }
+    RefreshToken.findOneAndDelete({ username: req.user.username });
+    res.status(200).json({ success: true, reason: "logged out successfully" });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }

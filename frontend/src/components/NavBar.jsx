@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import tt_bat from "../images/tt_bat.svg";
-import { useState } from "react";
+import { useLocalStorage } from "@mantine/hooks";
 import { Button, Group, Text } from "@mantine/core";
 import Classes from "../css/NavBar.module.css";
 
 function NavBar() {
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useLocalStorage({
+    key: "currentPage",
+    defaultValue: "home",
+  });
 
   function toggleFocus(focus) {
     setCurrentPage(focus);

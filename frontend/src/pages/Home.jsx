@@ -1,12 +1,7 @@
-import "../css/Home.css";
+import styles from "../css/Home.module.css";
 
 function Home() {
-  return (
-    <>
-      <div className="home-top-container"> </div>
-      <div className="home-bot-container"> </div>
-    </>
-  );
+  return <></>;
 }
 
 export default Home;

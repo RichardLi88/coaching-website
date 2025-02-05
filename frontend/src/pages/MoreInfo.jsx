@@ -1,4 +1,4 @@
-import "../css/MoreInfo.css";
+import styles from "../css/MoreInfo.module.css";
 
 function MoreInfo() {
   return <div></div>;

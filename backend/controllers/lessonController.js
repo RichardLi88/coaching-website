@@ -64,3 +64,29 @@ export const getLessons = async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 };
+
+export const getBestLesson = async (req, res) => {
+  try {
+    const bestLesson = await Lesson.find().sort({ clicked: "desc" }).limit(1);
+    res.status(200).json({ success: true, data: bestLesson });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+
+export const updateClickedLesson = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const lesson = await Lesson.findById(id);
+    if (!lesson) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Lesson not found" });
+    }
+    lesson.clicked += 1;
+    await lesson.save();
+    res.status(200).json({ success: true, data: lesson });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+};

@@ -1,19 +1,30 @@
-import { Box, Container, Flex, Text } from "@mantine/core";
+import { Box, Container, Flex, Title } from "@mantine/core";
 import styles from "../css/Lessons.module.css";
 import LessonGrid from "../components/LessonGrid";
+import LessonProvider from "../contexts/LessonContext";
+import PopularLessonCard from "../components/PopularLessonCard";
 
 function Lessons() {
   return (
     <>
-      <Container fluid h={2000} bg="rgba(144, 238, 144,0.5)">
-        <Flex fluid h={"50vh"} bg="" justify="flex-start" align="center">
-          <Box className={styles.hottest}></Box>
-        </Flex>
-        <Text>All lesson plans </Text>
-        <Container fluid bg="">
-          <LessonGrid />
+      <LessonProvider>
+        <Container fluid bg="rgba(144, 238, 144,0.5)" pb={30}>
+          <Flex h={"50vh"} justify="space-between" align="center">
+            <Box className={styles["hot-desc"]}></Box>
+            <Box className={styles["hot-container"]}>
+              <div className={styles["popular-container"]}>
+                <PopularLessonCard />
+              </div>
+            </Box>
+          </Flex>
+          <Title align="center" order={1}>
+            All lesson plans
+          </Title>
+          <Container fluid mt={10}>
+            <LessonGrid />
+          </Container>
         </Container>
-      </Container>
+      </LessonProvider>
     </>
   );
 }

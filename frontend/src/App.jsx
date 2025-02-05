@@ -8,6 +8,8 @@ import MoreInfo from "./pages/MoreInfo";
 import "@mantine/core/styles.css";
 import { AppShell, MantineProvider } from "@mantine/core";
 import Inquire from "./pages/Inquire";
+import Footer from "./components/Footer";
+import LessonProvider from "./contexts/LessonContext";
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route path="/inquire" element={<Inquire />} />
           <Route path="/more" element={<MoreInfo />} />
         </Routes>
+        <Footer />
       </MantineProvider>
     </>
   );

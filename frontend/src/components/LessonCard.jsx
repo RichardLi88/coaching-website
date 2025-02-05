@@ -1,6 +1,15 @@
 import { Card, Text, Button, Group, Image } from "@mantine/core";
+import { updateClicked } from "../fetch/fetchLessons";
 
 function LessonCard({ data }) {
+  async function btnClicked() {
+    try {
+      const result = await updateClicked(data._id);
+      console.log(result);
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
   return (
     <Card>
       <Card.Section>
@@ -19,7 +28,7 @@ function LessonCard({ data }) {
         {data.desc}
       </Text>
 
-      <Button color="blue" fullWidth mt="md" radius="lg">
+      <Button color="blue" fullWidth mt="md" radius="lg" onClick={btnClicked}>
         {`Book with ${data.coach}`}
       </Button>
     </Card>

@@ -1,10 +1,37 @@
 @import url('General.module.css');
 
-.hottest {
+.hot-desc {
   width: 50%;
   height: 80%;
   background-color: rgb(0, 81, 255);
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
   opacity: 0.6;
+}
+
+.hot-container {
+  width: 50%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.popular-container {
+  width: 40%;
+  position: relative;
+
+}
+
+.popular-container:before {
+  position: absolute;
+  height: 110%;
+  width: 110%;
+  background-image: linear-gradient(to right, #3acfd5 0%, #5703f3 100%);
+  content: '';
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0,0.5);
 }

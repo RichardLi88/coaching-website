@@ -3,14 +3,18 @@ import { adminVerify, verify } from "../utility/jwtAuth.js";
 import {
   createLesson,
   deleteLesson,
+  getBestLesson,
   getLessons,
+  updateClickedLesson,
   updateLesson,
 } from "../controllers/lessonController.js";
 
 const lessonRouter = express.Router();
 
 lessonRouter.get("/fetch", getLessons);
+lessonRouter.get("/fetch/best", getBestLesson);
 lessonRouter.put("/update/:id", verify, adminVerify, updateLesson);
+lessonRouter.put("/update/clicked/:id", updateClickedLesson);
 lessonRouter.post("/create", createLesson);
 lessonRouter.delete("/delete/:id", verify, adminVerify, deleteLesson);
 

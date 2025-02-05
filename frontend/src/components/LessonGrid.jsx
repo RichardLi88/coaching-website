@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import LessonCard from "../components/LessonCard";
-import { getLessons } from "../fetch/fetchLessons";
 import { SimpleGrid } from "@mantine/core";
+import { useContext } from "react";
+import { lessonContext } from "../contexts/LessonContext";
 
 function LessonGrid() {
-  const [lessons, setLessons] = useState([]);
+  const { lessons, retrieveLessons } = useContext(lessonContext);
+
   useEffect(() => {
-    const retrieveLessons = async () => {
-      try {
-        const data = await getLessons();
-        setLessons(data);
-      } catch (err) {
-        console.log(err.message);
-      }
-    };
-    retrieveLessons();
+    async function getLessons() {
+      await retrieveLessons();
+    }
+    getLessons();
   }, []);
 
   return (

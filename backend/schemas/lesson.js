@@ -22,6 +22,10 @@ const lessonSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    clicked: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true, //createdAt, updatedAt

@@ -46,6 +46,7 @@
 .navlink {
   text-decoration: none;
   color: rgb(0, 140, 255);
+  text-align: center;
 }
 
 .focused {

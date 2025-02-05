@@ -29,46 +29,46 @@ function NavBar() {
         </Text>
       </div>
       <Group className={Classes["nav-mid"]} justify="center">
-        <Button
-          classNames={{
-            root: `${currentPage === "home" ? Classes.focused : ""} ${
-              Classes.navtab
-            }`,
-          }}
-          variant="subtle"
-          radius="xl"
-          onClick={() => {
-            toggleFocus("home");
-          }}
-        >
-          <Link className={Classes.navlink} to="/">
+        <Link className={Classes.navlink} to="/">
+          <Button
+            classNames={{
+              root: `${currentPage === "home" ? Classes.focused : ""} ${
+                Classes.navtab
+              }`,
+            }}
+            variant="subtle"
+            radius="xl"
+            onClick={() => {
+              toggleFocus("home");
+            }}
+          >
             Home
-          </Link>
-        </Button>
-        <Button
-          className={currentPage === "about" ? Classes.focused : ""}
-          variant="subtle"
-          radius="xl"
-          onClick={() => {
-            toggleFocus("about");
-          }}
-        >
-          <Link className={Classes.navlink} to="/about">
+          </Button>
+        </Link>
+        <Link className={Classes.navlink} to="/about">
+          <Button
+            className={currentPage === "about" ? Classes.focused : ""}
+            variant="subtle"
+            radius="xl"
+            onClick={() => {
+              toggleFocus("about");
+            }}
+          >
             About
-          </Link>
-        </Button>
-        <Button
-          className={currentPage === "lessons" ? Classes.focused : ""}
-          variant="subtle"
-          radius="xl"
-          onClick={() => {
-            toggleFocus("lessons");
-          }}
-        >
-          <Link className={Classes.navlink} to="/lessons">
+          </Button>
+        </Link>
+        <Link className={Classes.navlink} to="/lessons">
+          <Button
+            className={currentPage === "lessons" ? Classes.focused : ""}
+            variant="subtle"
+            radius="xl"
+            onClick={() => {
+              toggleFocus("lessons");
+            }}
+          >
             Lessons
-          </Link>
-        </Button>
+          </Button>
+        </Link>
         <Button
           className={currentPage === "inquire" ? Classes.focused : ""}
           variant="subtle"
@@ -81,18 +81,18 @@ function NavBar() {
             Inquire
           </Link>
         </Button>
-        <Button
-          className={currentPage === "more" ? Classes.focused : ""}
-          variant="subtle"
-          radius="xl"
-          onClick={() => {
-            toggleFocus("more");
-          }}
-        >
-          <Link className={Classes.navlink} to="/more">
+        <Link className={Classes.navlink} to="/more">
+          <Button
+            className={currentPage === "more" ? Classes.focused : ""}
+            variant="subtle"
+            radius="xl"
+            onClick={() => {
+              toggleFocus("more");
+            }}
+          >
             More Info
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </Group>
       <Group
         className={Classes["nav-right"]}

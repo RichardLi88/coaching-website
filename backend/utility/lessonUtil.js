@@ -1,13 +1,13 @@
 export function validateAllParameters(data) {
-  if (!data.name || !data.desc || !data.image || !data.price) {
+  if (!data.title || !data.coach || !data.desc || !data.image || !data.price) {
     return false;
   }
   if (
-    typeof data.name !== String ||
-    typeof data.desc !== String ||
-    typeof data.image ||
-    String ||
-    typeof data.price !== Number
+    typeof data.coach !== "string" ||
+    typeof data.title !== "string" ||
+    typeof data.desc !== "string" ||
+    typeof data.image !== "string" ||
+    typeof data.price !== "number"
   ) {
     return false;
   }

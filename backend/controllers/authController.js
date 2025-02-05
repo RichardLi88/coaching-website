@@ -14,6 +14,8 @@ export const signUp = async (req, res, then) => {
   const data = req.body;
   if (
     !data.username ||
+    !data.firstname ||
+    !data.lastname ||
     !data.email ||
     !data.password ||
     !data.confirmPassword

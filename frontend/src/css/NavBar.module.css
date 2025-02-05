@@ -26,17 +26,17 @@
   width: 100%;
   height: 100%;
 }
-.navleft {
+.nav-left, .nav-right {
   flex: 1;
   display: flex;
-  position: absolute;
   left: 10px;
   align-items: center;
 }
-.navright {
+
+.nav-mid {
   display: flex;
-  justify-content: space-between;
-  width: 40%;
+  flex: 2;
+  max-width: 800px;
   background-color: rgba(12, 148, 3, 0.2);
   padding: 10px 20px 10px 20px;
   border-radius: 30px;
@@ -50,4 +50,8 @@
 
 .focused {
   background-color: rgba(12, 148, 3, 0.2) !important;
+}
+
+.navtab {
+  transition: 150ms; 
 }

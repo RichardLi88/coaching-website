@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import tt_bat from "../images/tt_bat.svg";
 import { useState } from "react";
-import { Button } from "@mantine/core";
+import { Button, Group, Text } from "@mantine/core";
 import Classes from "../css/NavBar.module.css";
 
 function NavBar() {
@@ -13,16 +13,28 @@ function NavBar() {
 
   return (
     <div className={Classes.navcontainer}>
-      <div className={Classes.navleft}>
+      <div className={Classes["nav-left"]}>
         <div className={Classes.imgcontainer}>
           <img src={tt_bat} alt="table tennis bat" className={Classes.navimg} />
         </div>
 
-        <p className={Classes.navtitle}>Richard TT</p>
+        <Text
+          className={Classes.navtitle}
+          fw={700}
+          variant="gradient"
+          size="xl"
+          gradient={{ from: "blue", to: "cyan", deg: 90 }}
+        >
+          Richard TT
+        </Text>
       </div>
-      <div className={Classes.navright}>
+      <Group className={Classes["nav-mid"]} justify="center">
         <Button
-          className={currentPage === "home" ? Classes.focused : ""}
+          classNames={{
+            root: `${currentPage === "home" ? Classes.focused : ""} ${
+              Classes.navtab
+            }`,
+          }}
           variant="subtle"
           radius="xl"
           onClick={() => {
@@ -58,6 +70,18 @@ function NavBar() {
           </Link>
         </Button>
         <Button
+          className={currentPage === "inquire" ? Classes.focused : ""}
+          variant="subtle"
+          radius="xl"
+          onClick={() => {
+            toggleFocus("inquire");
+          }}
+        >
+          <Link className={Classes.navlink} to="/inquire">
+            Inquire
+          </Link>
+        </Button>
+        <Button
           className={currentPage === "more" ? Classes.focused : ""}
           variant="subtle"
           radius="xl"
@@ -69,7 +93,16 @@ function NavBar() {
             More Info
           </Link>
         </Button>
-      </div>
+      </Group>
+      <Group
+        className={Classes["nav-right"]}
+        justify="flex-end"
+        gap="xl"
+        mr={20}
+      >
+        <Button variant="gradient">Sign Up</Button>
+        <Button variant="gradient">Login</Button>
+      </Group>
     </div>
   );
 }

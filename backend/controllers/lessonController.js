@@ -59,7 +59,7 @@ export const updateLesson = async (req, res) => {
 export const getLessons = async (req, res) => {
   try {
     const allLessons = await Lesson.find({});
-    res.status(200).json({ success: true, data: allLessons });
+    return res.status(200).json({ success: true, data: allLessons });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }

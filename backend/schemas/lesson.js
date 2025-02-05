@@ -2,7 +2,11 @@ import mongoose from "mongoose";
 
 const lessonSchema = new mongoose.Schema(
   {
-    name: {
+    title: {
+      type: String,
+      required: true,
+    },
+    coach: {
       type: String,
       required: true,
     },

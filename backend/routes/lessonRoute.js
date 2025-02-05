@@ -11,7 +11,7 @@ const lessonRouter = express.Router();
 
 lessonRouter.get("/fetch", getLessons);
 lessonRouter.put("/update/:id", verify, adminVerify, updateLesson);
-lessonRouter.post("/create", verify, adminVerify, createLesson);
+lessonRouter.post("/create", createLesson);
 lessonRouter.delete("/delete/:id", verify, adminVerify, deleteLesson);
 
 export default lessonRouter;

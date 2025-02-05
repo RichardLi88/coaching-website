@@ -103,8 +103,26 @@ function NavBar() {
         gap="xl"
         mr={20}
       >
-        <Button variant="gradient">Sign Up</Button>
-        <Button variant="gradient">Login</Button>
+        <Link className={Classes.navlink} to="/signup">
+          <Button
+            variant="gradient"
+            onClick={() => {
+              toggleFocus("");
+            }}
+          >
+            Sign Up
+          </Button>
+        </Link>
+        <Link className={Classes.navlink} to="/login">
+          <Button
+            variant="gradient"
+            onClick={() => {
+              toggleFocus("");
+            }}
+          >
+            Login
+          </Button>
+        </Link>
       </Group>
     </div>
   );

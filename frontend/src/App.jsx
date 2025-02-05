@@ -6,10 +6,10 @@ import NavBar from "./components/NavBar";
 import { Routes, Route } from "react-router-dom";
 import MoreInfo from "./pages/MoreInfo";
 import "@mantine/core/styles.css";
-import { AppShell, MantineProvider } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 import Inquire from "./pages/Inquire";
 import Footer from "./components/Footer";
-import LessonProvider from "./contexts/LessonContext";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
           <Route path="/lessons" element={<Lessons />} />
           <Route path="/inquire" element={<Inquire />} />
           <Route path="/more" element={<MoreInfo />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
         <Footer />
       </MantineProvider>

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { getLessons } from "../fetch/fetchLessons";
+import { getLessons } from "../utility/fetchLessons";
 
 export const lessonContext = createContext();
 

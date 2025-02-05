@@ -10,13 +10,22 @@ import {
 import recreational from "../images/recreational.jpg";
 import { useForm } from "@mantine/form";
 import styles from "../css/SignUp.module.css";
+import { useState } from "react";
+import { validateSignUp } from "../utility/Validate";
+import { signUp } from "../utility/fetchAuthentication";
+import SuccessfulSignUp from "../components/notifications/SuccessfulSignUp";
+import InvalidSignUp from "../components/notifications/InvalidSignUp";
 
 function SignUp() {
+  const [invalid, setInvalid] = useState(false);
+  const [reason, setReason] = useState("Invalid inputs");
+  const [success, setSuccess] = useState(false);
+
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
-      firstName: "",
-      lastName: "",
+      firstname: "",
+      lastname: "",
       username: "",
       email: "",
       password: "",
@@ -28,7 +37,32 @@ function SignUp() {
     },
   });
 
-  function handleSubmit() {}
+  async function handleSubmit() {
+    try {
+      const data = form.getValues();
+      const isValid = validateSignUp(data);
+      if (!isValid.success) {
+        setReason(isValid.reason);
+        console.log(isValid);
+        console.log(reason);
+        setInvalid(true);
+        return;
+      }
+      console.log(data);
+      const response = await signUp(data);
+      console.log(response);
+      if (!response.success) {
+        setReason(response.data);
+        setInvalid(true);
+        return;
+      }
+      setSuccess(true);
+    } catch (error) {
+      setReason("An error occurred during sign up");
+      setInvalid(true);
+      console.error(error);
+    }
+  }
 
   return (
     <Flex styles={styles["main-container"]} justify="center">
@@ -45,15 +79,15 @@ function SignUp() {
               withAsterisk
               label="First Name"
               placeholder="First Name"
-              key={form.key("firstName")}
-              {...form.getInputProps("firstName")}
+              key={form.key("firstname")}
+              {...form.getInputProps("firstname")}
             />
             <TextInput
               withAsterisk
               label="Last Name"
               placeholder="Last Name"
-              key={form.key("lastName")}
-              {...form.getInputProps("lastName")}
+              key={form.key("lastname")}
+              {...form.getInputProps("lastname")}
             />
           </div>
 
@@ -89,10 +123,15 @@ function SignUp() {
             variant="gradient"
             gradient={{ from: "blue", to: "cyan", deg: 90 }}
             className={styles["form-btn"]}
+            onClick={handleSubmit}
           >
             Sign Up
           </Button>
         </form>
+        {invalid && (
+          <InvalidSignUp close={() => setInvalid(false)} reason={reason} />
+        )}
+        {success && <SuccessfulSignUp close={() => setSuccess(false)} />}
       </Flex>
       <Flex className={`${styles["main-box"]} ${styles["main-2"]}`}>
         <Image className={styles["signup-img"]} src={recreational}></Image>

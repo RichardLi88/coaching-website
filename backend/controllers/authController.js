@@ -6,49 +6,18 @@ import {
 } from "../utility/jwtAuth.js";
 import RefreshToken from "../schemas/refreshToken.js";
 
-export const signUp = async (req, res, then) => {
+export const signUp = async (req, res) => {
   /*
-  backend function used to validate details, and then register the account to the database
+  backend function used to register details after validation including hashing password with bcrypt
   */
-  //validation of details
   const data = req.body;
-  if (
-    !data.username ||
-    !data.firstname ||
-    !data.lastname ||
-    !data.email ||
-    !data.password ||
-    !data.confirmPassword
-  ) {
-    return res
-      .status(400)
-      .json({ success: false, reason: "fill in all details" });
-  }
-  if (data.password !== data.confirmPassword) {
-    return res
-      .status(400)
-      .json({ success: false, reason: "passwords do not match" });
-  }
 
-  //checking if there already exists the username
-  try {
-    const user = await User.findOne({ username: data.username });
-
-    if (user) {
-      return res
-        .status(400)
-        .json({ success: false, reason: "Username is taken" });
-    }
-  } catch (err) {
-    console.log(`error trying to retrieve data from database ${err.message}`);
-    return res.status(500).json({ success: false, error: err.message });
-  }
-
-  //password hashing using bcrypt
   try {
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const user = {
       username: data.username,
+      firstname: data.firstname,
+      lastname: data.lastname,
       password: hashedPassword,
       email: data.email,
       isAdmin: false,
@@ -64,8 +33,48 @@ export const signUp = async (req, res, then) => {
     });
   } catch (err) {
     console.log(`Error when hashing password: ${err.message}`);
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, data: err.message });
   }
+};
+
+export const validateSignUp = async (req, res, then) => {
+  //validation of details
+  const data = req.body;
+
+  let valid = true;
+  let reason = "Valid data";
+  if (
+    !data.username ||
+    !data.firstname ||
+    !data.lastname ||
+    !data.email ||
+    !data.password ||
+    !data.confirmPassword
+  ) {
+    valid = false;
+    reason = "fill in all details";
+  } else if (data.password !== data.confirmPassword) {
+    valid = false;
+    reason = "passwords do not match";
+  }
+
+  if (!valid) {
+    return res.status(400).json({ success: valid, data: reason });
+  }
+  //checking if there already exists the username
+
+  try {
+    const user = await User.findOne({ username: data.username });
+
+    if (user) {
+      valid = false;
+      reason = "username already taken";
+    }
+  } catch (err) {
+    console.log(`error trying to retrieve data from database ${err.message}`);
+    return res.status(500).json({ success: false, data: err.message });
+  }
+  then();
 };
 
 export const login = async (req, res) => {
@@ -120,7 +129,7 @@ export const login = async (req, res) => {
         .json({ success: false, reason: "passwords dont match" });
     }
   } catch (err) {
-    return res.status(500).json({ success: false, error: err.message });
+    return res.status(500).json({ success: false, data: err.message });
   }
 };
 
@@ -135,6 +144,6 @@ export const logout = async (req, res) => {
     RefreshToken.findOneAndDelete({ username: req.user.username });
     res.status(200).json({ success: true, reason: "logged out successfully" });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, data: err.message });
   }
 };

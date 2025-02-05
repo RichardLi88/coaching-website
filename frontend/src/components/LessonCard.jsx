@@ -1,5 +1,5 @@
 import { Card, Text, Button, Group, Image } from "@mantine/core";
-import { updateClicked } from "../fetch/fetchLessons";
+import { updateClicked } from "../utility/fetchLessons";
 
 function LessonCard({ data }) {
   async function btnClicked() {

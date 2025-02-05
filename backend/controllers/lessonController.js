@@ -8,7 +8,7 @@ export const createLesson = async (req, res) => {
   if (!validateAllParameters(data)) {
     return res
       .status(400)
-      .json({ success: false, error: "please fill in all fields" });
+      .json({ success: false, data: "please fill in all fields" });
   }
 
   //saving to db
@@ -17,7 +17,7 @@ export const createLesson = async (req, res) => {
     newLesson.save();
     res.status(201).json({ success: true, message: newLesson });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, data: err.message });
   }
 };
 
@@ -28,7 +28,7 @@ export const deleteLesson = async (req, res) => {
     Lesson.findByIdAndDelete(id);
     res.status(200).json({ success: true, message: "successfully deleted" });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, data: err.message });
   }
 };
 
@@ -38,7 +38,7 @@ export const updateLesson = async (req, res) => {
   if (!validateAllParameters(data)) {
     return res.status(400).json({
       success: false,
-      error: "please fill in all fields / with correct data type",
+      data: "please fill in all fields / with correct data type",
     });
   }
 
@@ -52,7 +52,7 @@ export const updateLesson = async (req, res) => {
     const newLesson = await Lesson.findByIdAndUpdate(id, data, { new: true });
     res.status(201).json({ success: true, data: newLesson });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, data: err.message });
   }
 };
 
@@ -61,7 +61,7 @@ export const getLessons = async (req, res) => {
     const allLessons = await Lesson.find({});
     return res.status(200).json({ success: true, data: allLessons });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, data: err.message });
   }
 };
 
@@ -70,7 +70,7 @@ export const getBestLesson = async (req, res) => {
     const bestLesson = await Lesson.find().sort({ clicked: "desc" }).limit(1);
     res.status(200).json({ success: true, data: bestLesson });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, data: err.message });
   }
 };
 
@@ -87,6 +87,6 @@ export const updateClickedLesson = async (req, res) => {
     await lesson.save();
     res.status(200).json({ success: true, data: lesson });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json({ success: false, data: err.message });
   }
 };

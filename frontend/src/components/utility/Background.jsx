@@ -1,4 +1,4 @@
-import styles from "../css/Login.module.css";
+import styles from "../../css/components/Utility.module.css";
 import { Flex } from "@mantine/core";
 
 function Background({ children }) {

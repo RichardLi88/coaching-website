@@ -9,6 +9,7 @@ import { simpleValidateLogin } from "../utility/Validate";
 import { login } from "../utility/fetchAuthentication";
 import { userContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
+import Background from "../components/utility/Background";
 
 function Login() {
   const [invalid, setInvalid] = useState(false);
@@ -52,7 +53,7 @@ function Login() {
   }
 
   return (
-    <Flex className={styles["main-container"]}>
+    <Background>
       <div className={styles["box"]}>
         <form className={styles["form-container"]}>
           <Title>Log In</Title>
@@ -98,7 +99,7 @@ function Login() {
         </form>
         <Flex className={styles["login-right"]}></Flex>
       </div>
-    </Flex>
+    </Background>
   );
 }
 

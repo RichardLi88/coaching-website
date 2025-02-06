@@ -1,5 +1,7 @@
-import { Box, Transition } from "@mantine/core";
+import Background from "../components/utility/Background";
 
-function Inquire() {}
+function Inquire() {
+  return <Background></Background>;
+}
 
 export default Inquire;

@@ -16,6 +16,7 @@ import { signUp } from "../utility/fetchAuthentication";
 import SuccessNotif from "../components/popups/SuccessNotif";
 import InvalidNotif from "../components/popups/InvalidNotif";
 import { Link, useNavigate } from "react-router-dom";
+import Background from "../components/utility/Background";
 
 function SignUp() {
   const [invalid, setInvalid] = useState(false);
@@ -64,7 +65,7 @@ function SignUp() {
   }
 
   return (
-    <Flex className={styles["main-container"]} justify="center">
+    <Background>
       <Container className={styles["main-border"]}>
         <Flex className={styles["main-box"]} bg="lightblue" pl={20} pr={20}>
           <Title>Sign Up Now!</Title>
@@ -145,7 +146,7 @@ function SignUp() {
           <Image className={styles["signup-img"]} src={recreational}></Image>
         </Flex>
       </Container>
-    </Flex>
+    </Background>
   );
 }
 export default SignUp;

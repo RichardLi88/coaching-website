@@ -1,7 +1,8 @@
+import Background from "../components/utility/Background";
 import styles from "../css/pages/About.module.css";
 
 function About() {
-  return <div></div>;
+  return <Background></Background>;
 }
 
 export default About;

@@ -3,12 +3,16 @@ import tt_bat from "../images/tt_bat.svg";
 import { useLocalStorage } from "@mantine/hooks";
 import { Button, Group, Text } from "@mantine/core";
 import Classes from "../css/NavBar.module.css";
+import { useContext, useEffect } from "react";
+import { userContext } from "../contexts/UserContext";
 
 function NavBar() {
   const [currentPage, setCurrentPage] = useLocalStorage({
     key: "currentPage",
     defaultValue: "home",
   });
+
+  const { user } = useContext(userContext);
 
   function toggleFocus(focus) {
     setCurrentPage(focus);
@@ -96,6 +100,20 @@ function NavBar() {
             More Info
           </Button>
         </Link>
+        {user && (
+          <Link className={Classes.navlink} to="/member">
+            <Button
+              className={currentPage === "member" ? Classes.focused : ""}
+              variant="subtle"
+              radius="xl"
+              onClick={() => {
+                toggleFocus("member");
+              }}
+            >
+              Member Portal
+            </Button>
+          </Link>
+        )}
       </Group>
       <Group
         className={Classes["nav-right"]}
@@ -103,26 +121,30 @@ function NavBar() {
         gap="xl"
         mr={20}
       >
-        <Link className={Classes.navlink} to="/signup">
-          <Button
-            variant="gradient"
-            onClick={() => {
-              toggleFocus("");
-            }}
-          >
-            Sign Up
-          </Button>
-        </Link>
-        <Link className={Classes.navlink} to="/login">
-          <Button
-            variant="gradient"
-            onClick={() => {
-              toggleFocus("");
-            }}
-          >
-            Login
-          </Button>
-        </Link>
+        {!user && (
+          <Link className={Classes.navlink} to="/signup">
+            <Button
+              variant="gradient"
+              onClick={() => {
+                toggleFocus("");
+              }}
+            >
+              Sign Up
+            </Button>
+          </Link>
+        )}
+        {!user && (
+          <Link className={Classes.navlink} to="/login">
+            <Button
+              variant="gradient"
+              onClick={() => {
+                toggleFocus("");
+              }}
+            >
+              Login
+            </Button>
+          </Link>
+        )}
       </Group>
     </div>
   );

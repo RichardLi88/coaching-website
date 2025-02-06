@@ -13,6 +13,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import { useContext, useEffect } from "react";
 import { userContext } from "./contexts/UserContext";
+import Member from "./pages/Member";
 
 function App() {
   const { setUser } = useContext(userContext);
@@ -34,6 +35,7 @@ function App() {
           <Route path="/more" element={<MoreInfo />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/member" element={<Member />} />
         </Routes>
         <Footer />
       </MantineProvider>

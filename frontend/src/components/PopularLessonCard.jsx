@@ -15,7 +15,7 @@ function PopularLessonCard() {
       }
     }
     getPopularLesson();
-  }, [lesson]);
+  }, []);
 
   return (
     <Flex direction="column" align="center">

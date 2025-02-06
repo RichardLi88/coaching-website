@@ -1,15 +1,9 @@
-import { Card, Text, Button, Group, Image } from "@mantine/core";
-import { updateClicked } from "../utility/fetchLessons";
+import { Card, Text, Group, Image } from "@mantine/core";
+import { lazy, Suspense } from "react";
+
+const LessonModal = lazy(() => import("./popups/LessonModal"));
 
 function LessonCard({ data }) {
-  async function btnClicked() {
-    try {
-      const result = await updateClicked(data._id);
-      console.log(result);
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
   return (
     <Card>
       <Card.Section>
@@ -19,18 +13,15 @@ function LessonCard({ data }) {
           alt="Fanzhendong"
         />
       </Card.Section>
-
       <Group justify="space-between" mt="md">
         <Text fw={700}>{data.title}</Text>
       </Group>
-
       <Text size="sm" c="dimmed">
         {data.desc}
       </Text>
-
-      <Button color="blue" fullWidth mt="md" radius="lg" onClick={btnClicked}>
-        {`Book with ${data.coach}`}
-      </Button>
+      <Suspense>
+        <LessonModal data={data} />
+      </Suspense>
     </Card>
   );
 }

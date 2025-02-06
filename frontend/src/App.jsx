@@ -2,10 +2,9 @@ import "./css/App.module.css";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
 import { Routes, Route, Outlet } from "react-router-dom";
-
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import { MantineProvider } from "@mantine/core";
-
 import Footer from "./components/Footer";
 import { useContext, useEffect } from "react";
 import { userContext } from "./contexts/UserContext";

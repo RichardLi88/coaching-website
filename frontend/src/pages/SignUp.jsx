@@ -13,8 +13,8 @@ import styles from "../css/SignUp.module.css";
 import { useState } from "react";
 import { simpleValidateSignUp } from "../utility/Validate";
 import { signUp } from "../utility/fetchAuthentication";
-import SuccessNotif from "../components/notifications/SuccessNotif";
-import InvalidNotif from "../components/notifications/InvalidNotif";
+import SuccessNotif from "../components/popups/SuccessNotif";
+import InvalidNotif from "../components/popups/InvalidNotif";
 import { Link, useNavigate } from "react-router-dom";
 
 function SignUp() {

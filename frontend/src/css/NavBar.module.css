@@ -52,3 +52,8 @@
 .navtab {
   transition: 150ms; 
 }
+
+.avatar {
+  border-color: rgb(0, 140, 255);
+  border-style: solid;
+}

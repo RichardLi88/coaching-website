@@ -28,7 +28,7 @@ function PopularLessonCard() {
         Most popular lesson plan!
       </Text>
       <LessonCard key={lesson._id} data={lesson} />
-      <Text>{`Clicked ${lesson.clicked} times!`}</Text>
+      <Text>{`Interacted with ${lesson.clicked} times!`}</Text>
     </Flex>
   );
 }

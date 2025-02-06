@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import tt_bat from "../images/tt_bat.svg";
-import { useLocalStorage } from "@mantine/hooks";
-import { Button, Group, Text } from "@mantine/core";
+import { useSessionStorage } from "@mantine/hooks";
+import { Avatar, Button, Group, Text, Tooltip, Menu } from "@mantine/core";
 import Classes from "../css/NavBar.module.css";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { userContext } from "../contexts/UserContext";
+import { IconSettings, IconTrash, IconUser } from "@tabler/icons-react";
 
 function NavBar() {
-  const [currentPage, setCurrentPage] = useLocalStorage({
+  const [currentPage, setCurrentPage] = useSessionStorage({
     key: "currentPage",
     defaultValue: "home",
   });
@@ -157,6 +158,34 @@ function NavBar() {
               Logout
             </Button>
           </Link>
+        )}
+        {user && (
+          <Menu
+            withArrow
+            transitionProps={{ transition: "rotate-right", duration: 150 }}
+          >
+            <Menu.Target>
+              <Avatar
+                radius="xl"
+                name={user.firstname + " " + user.lastname}
+                color="cyan"
+                size="lg"
+                className={Classes["avatar"]}
+              />
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Label>Options</Menu.Label>
+              <Menu.Item leftSection={<IconSettings size={14} />}>
+                Settings
+              </Menu.Item>
+              <Menu.Item leftSection={<IconUser size={14} />}>
+                Account Settings
+              </Menu.Item>
+              <Menu.Item color="red" leftSection={<IconTrash size={14} />}>
+                Delete my Account
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
         )}
       </Group>
     </div>

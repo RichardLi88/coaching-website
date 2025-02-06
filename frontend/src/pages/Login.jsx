@@ -41,7 +41,9 @@ function Login() {
         setSuccess(true);
         userContextLogin(data);
         setTimeout(() => {
-          navigate("/", { replace: true });
+          sessionStorage.setItem("currentPage", "member");
+
+          navigate("/member", { replace: true });
         }, 700);
       } else {
         setReason(data);

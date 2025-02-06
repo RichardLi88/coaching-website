@@ -14,7 +14,7 @@ export const createLesson = async (req, res) => {
   //saving to db
   try {
     const newLesson = Lesson(data);
-    newLesson.save();
+    await newLesson.save();
     res.status(201).json({ success: true, message: newLesson });
   } catch (err) {
     res.status(500).json({ success: false, data: err.message });

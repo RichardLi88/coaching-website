@@ -30,7 +30,6 @@ function MemberSideBar({ value }) {
   return (
     <Box w={`20%`} maw={`400px`}>
       {items.map((item, index) => {
-        console.log(index);
         return (
           <NavLink
             href="#required-for-focus"

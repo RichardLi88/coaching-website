@@ -1,23 +1,24 @@
 import { Link } from "react-router-dom";
 import tt_bat from "../images/tt_bat.svg";
-import { useSessionStorage } from "@mantine/hooks";
 import { Avatar, Button, Group, Text, Menu } from "@mantine/core";
 import styles from "../css/components/NavBar.module.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { userContext } from "../contexts/UserContext";
 import { IconSettings, IconTrash, IconUser } from "@tabler/icons-react";
 
 function NavBar() {
-  const [currentPage, setCurrentPage] = useSessionStorage({
-    key: "currentPage",
-    defaultValue: "home",
+  const [currentPage, setCurrentPage] = useState("home");
+
+  useEffect(() => {
+    const page = sessionStorage.getItem("currentPage");
+    if (page) setCurrentPage(page);
   });
 
-  const { user, userContextLogout } = useContext(userContext);
-
-  function toggleFocus(focus) {
-    setCurrentPage(focus);
+  function changePage(page) {
+    setCurrentPage(page);
+    sessionStorage.setItem("currentPage", page);
   }
+  const { user, userContextLogout } = useContext(userContext);
 
   return (
     <div className={styles.navcontainer}>
@@ -47,7 +48,7 @@ function NavBar() {
             variant="subtle"
             radius="xl"
             onClick={() => {
-              toggleFocus("home");
+              changePage("home");
             }}
           >
             Home
@@ -59,7 +60,7 @@ function NavBar() {
             variant="subtle"
             radius="xl"
             onClick={() => {
-              toggleFocus("about");
+              changePage("about");
             }}
           >
             About
@@ -71,7 +72,7 @@ function NavBar() {
             variant="subtle"
             radius="xl"
             onClick={() => {
-              toggleFocus("lessons");
+              changePage("lessons");
             }}
           >
             Lessons
@@ -82,7 +83,7 @@ function NavBar() {
           variant="subtle"
           radius="xl"
           onClick={() => {
-            toggleFocus("inquire");
+            changePage("inquire");
           }}
         >
           <Link className={styles.navlink} to="/inquire">
@@ -95,7 +96,7 @@ function NavBar() {
             variant="subtle"
             radius="xl"
             onClick={() => {
-              toggleFocus("more");
+              changePage("more");
             }}
           >
             More Info
@@ -108,7 +109,7 @@ function NavBar() {
               variant="subtle"
               radius="xl"
               onClick={() => {
-                toggleFocus("member");
+                changePage("member");
               }}
             >
               Member Portal
@@ -127,7 +128,7 @@ function NavBar() {
             <Button
               variant="gradient"
               onClick={() => {
-                toggleFocus("");
+                changePage("");
               }}
             >
               Sign Up
@@ -139,7 +140,7 @@ function NavBar() {
             <Button
               variant="gradient"
               onClick={() => {
-                toggleFocus("");
+                changePage("");
               }}
             >
               Login
@@ -151,7 +152,7 @@ function NavBar() {
             <Button
               variant="gradient"
               onClick={() => {
-                toggleFocus("home");
+                changePage("home");
                 userContextLogout();
               }}
             >

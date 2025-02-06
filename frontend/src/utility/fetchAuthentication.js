@@ -7,11 +7,8 @@ export async function signUp(data) {
       },
       body: JSON.stringify(data),
     });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const processedData = await response.json();
 
+    const processedData = await response.json();
     return processedData;
   } catch (err) {
     console.log(err.message);

@@ -3,17 +3,20 @@ import { Notification } from "@mantine/core";
 import styles from "../../css/Notifications.module.css";
 import { useEffect } from "react";
 
-function InvalidSignUp({ close, reason }) {
+function InvalidNotif({ close, title, reason }) {
   const xIcon = <IconX size={20} />;
+
   useEffect(() => {
-    console.log(reason);
+    setTimeout(() => {
+      close();
+    }, 5000);
   });
   return (
     <>
       <Notification
         icon={xIcon}
         color="red"
-        title="Invalid Sign up details"
+        title={title}
         onClick={close}
         className={styles["notification"]}
       >
@@ -23,4 +26,4 @@ function InvalidSignUp({ close, reason }) {
   );
 }
 
-export default InvalidSignUp;
+export default InvalidNotif;

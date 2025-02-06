@@ -1,11 +1,13 @@
 .main-container {
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
+  background-color: rgba(144, 238, 144,0.5);
 }
 
+.main-border {
+  display: flex;
+  height: 80vh;
+  margin-top: 40px;
+}
 .main-box {
   display: flex;
   flex-direction: column;
@@ -13,6 +15,7 @@
   align-items: center;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
   position: relative;
+  box-sizing: border-box;
 }
 
 .form-top {
@@ -32,5 +35,7 @@ padding: 10px 20px 10px 20px;
 }
 
 .signup-img {
-  max-height: 800px;
+  object-fit: cover;
+  max-height: 80vh;
+  height: 100%;
 }

@@ -17,19 +17,19 @@ function NavBar() {
   return (
     <div className={Classes.navcontainer}>
       <div className={Classes["nav-left"]}>
-        <div className={Classes.imgcontainer}>
-          <img src={tt_bat} alt="table tennis bat" className={Classes.navimg} />
-        </div>
-
         <Text
           className={Classes.navtitle}
           fw={700}
           variant="gradient"
           size="xl"
+          ml={20}
           gradient={{ from: "blue", to: "cyan", deg: 90 }}
         >
           Richard TT
         </Text>
+        <div className={Classes.imgcontainer}>
+          <img src={tt_bat} alt="table tennis bat" className={Classes.navimg} />
+        </div>
       </div>
       <Group className={Classes["nav-mid"]} justify="center">
         <Link className={Classes.navlink} to="/">

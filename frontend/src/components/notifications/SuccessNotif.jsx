@@ -1,8 +1,14 @@
 import { IconCheck } from "@tabler/icons-react";
 import { Notification } from "@mantine/core";
 import styles from "../../css/Notifications.module.css";
+import { useEffect } from "react";
 
-function SuccessfulSignUp({ close }) {
+function SuccessNotif({ close, title, reason }) {
+  useEffect(() => {
+    setTimeout(() => {
+      close();
+    }, 5000);
+  });
   const iconCheck = <IconCheck size={20} />;
 
   return (
@@ -10,14 +16,14 @@ function SuccessfulSignUp({ close }) {
       <Notification
         icon={iconCheck}
         color="green"
-        title="Successfully signed up"
+        title={title}
         onClick={close}
         className={styles["notification"]}
       >
-        Welcome to Richard TT.
+        {reason}
       </Notification>
     </>
   );
 }
 
-export default SuccessfulSignUp;
+export default SuccessNotif;

@@ -40,7 +40,6 @@ export const signUp = async (req, res) => {
 export const validateSignUp = async (req, res, then) => {
   //validation of details
   const data = req.body;
-
   let valid = true;
   let reason = "Valid data";
   if (
@@ -62,13 +61,12 @@ export const validateSignUp = async (req, res, then) => {
     return res.status(400).json({ success: valid, data: reason });
   }
   //checking if there already exists the username
-
   try {
     const user = await User.findOne({ username: data.username });
-
     if (user) {
       valid = false;
       reason = "username already taken";
+      return res.status(400).json({ success: valid, data: reason });
     }
   } catch (err) {
     console.log(`error trying to retrieve data from database ${err.message}`);

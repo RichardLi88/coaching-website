@@ -1,4 +1,4 @@
-export function validateSignUp(data) {
+export function simpleValidateSignUp(data) {
   if (
     !data.confirmPassword ||
     !data.email ||

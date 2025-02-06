@@ -1,12 +1,14 @@
 .main-container {
   min-height: 100vh;
   background-color: rgba(144, 238, 144,0.5);
+  color: rgb(0, 140, 255);
+  align-items: center;
+
 }
 
 .main-border {
   display: flex;
   height: 80vh;
-  margin-top: 40px;
 }
 .main-box {
   display: flex;
@@ -38,4 +40,10 @@ padding: 10px 20px 10px 20px;
   object-fit: cover;
   max-height: 80vh;
   height: 100%;
+}
+
+.form-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

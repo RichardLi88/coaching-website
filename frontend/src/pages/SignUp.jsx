@@ -15,7 +15,7 @@ import { simpleValidateSignUp } from "../utility/Validate";
 import { signUp } from "../utility/fetchAuthentication";
 import SuccessNotif from "../components/notifications/SuccessNotif";
 import InvalidNotif from "../components/notifications/InvalidNotif";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [invalid, setInvalid] = useState(false);
@@ -116,14 +116,17 @@ function SignUp() {
               key={form.key("confirmPassword")}
               {...form.getInputProps("confirmPassword")}
             />
-            <Button
-              variant="gradient"
-              gradient={{ from: "blue", to: "cyan", deg: 90 }}
-              className={styles["form-btn"]}
-              onClick={handleSubmit}
-            >
-              Sign Up
-            </Button>
+            <div className={styles["form-btns"]}>
+              <Button
+                variant="gradient"
+                gradient={{ from: "blue", to: "cyan", deg: 90 }}
+                className={styles["form-btn"]}
+                onClick={handleSubmit}
+              >
+                Sign Up
+              </Button>
+              <Link to="/login">Have an account?</Link>
+            </div>
           </form>
           {invalid && (
             <InvalidNotif

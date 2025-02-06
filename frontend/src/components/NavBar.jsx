@@ -12,7 +12,7 @@ function NavBar() {
     defaultValue: "home",
   });
 
-  const { user } = useContext(userContext);
+  const { user, userContextLogout } = useContext(userContext);
 
   function toggleFocus(focus) {
     setCurrentPage(focus);
@@ -142,6 +142,19 @@ function NavBar() {
               }}
             >
               Login
+            </Button>
+          </Link>
+        )}
+        {user && (
+          <Link className={Classes.navlink} to="/">
+            <Button
+              variant="gradient"
+              onClick={() => {
+                toggleFocus("home");
+                userContextLogout();
+              }}
+            >
+              Logout
             </Button>
           </Link>
         )}

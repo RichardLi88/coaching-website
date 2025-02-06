@@ -16,12 +16,9 @@ import { userContext } from "./contexts/UserContext";
 import Member from "./pages/Member";
 
 function App() {
-  const { setUser } = useContext(userContext);
+  const { userContextGetUser } = useContext(userContext);
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(storedUser);
-    }
+    userContextGetUser();
   }, []);
   return (
     <>

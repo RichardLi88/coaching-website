@@ -48,14 +48,12 @@ function SignUp() {
         return;
       }
       const response = await signUp(data);
-      console.log(response);
       if (!response.success) {
         setReason(response.data);
         setInvalid(true);
         return;
       }
       setSuccess(true);
-      localStorage.setItem("user", response.data);
       setTimeout(() => {
         navigate("/login", { replace: true });
       }, 600);

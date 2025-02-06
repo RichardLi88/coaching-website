@@ -14,7 +14,7 @@ function Login() {
   const [invalid, setInvalid] = useState(false);
   const [reason, setReason] = useState("Invalid inputs");
   const [success, setSuccess] = useState(false);
-  const { setUser } = useContext(userContext);
+  const { userContextLogin } = useContext(userContext);
   const navigate = useNavigate();
 
   const form = useForm({
@@ -36,10 +36,11 @@ function Login() {
     try {
       const { success, data } = await login(info);
       if (success) {
+        console.log(data);
         setSuccess(true);
-        setUser(data);
+        userContextLogin(data);
         setTimeout(() => {
-          navigate("/home", { replace: true });
+          navigate("/", { replace: true });
         }, 700);
       } else {
         setReason(data);

@@ -22,13 +22,12 @@ function LessonModal({ data }) {
   });
 
   useEffect(() => {
-    console.log("here");
-    console.log(data.firstname);
+    console.log("this");
     if (user) {
-      form.setInitialValues({
-        firstname: data.firstname,
-        lastname: data.lastname,
-        email: data.email,
+      form.setValues({
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
       });
     }
   }, [opened]);

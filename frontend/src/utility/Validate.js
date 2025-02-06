@@ -17,7 +17,7 @@ export function simpleValidateSignUp(data) {
 
 export function simpleValidateLogin(data) {
   if (!data.username || !data.password) {
-    return { success: false, reason: "please fille in all fields" };
+    return { success: false, reason: "please fill in all fields" };
   }
   return { success: true };
 }

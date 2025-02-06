@@ -11,8 +11,17 @@ import Inquire from "./pages/Inquire";
 import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import { useContext, useEffect } from "react";
+import { userContext } from "./contexts/UserContext";
 
 function App() {
+  const { setUser } = useContext(userContext);
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
   return (
     <>
       <MantineProvider>

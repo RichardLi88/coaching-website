@@ -80,7 +80,6 @@ export const login = async (req, res) => {
   backend function used to validate details, then if valid, generate access and response token and log the user in.
   */
   const data = req.body;
-
   //fetching from database
   try {
     const user = await User.findOne({ username: data.username });
@@ -88,7 +87,7 @@ export const login = async (req, res) => {
     if (!user) {
       return res
         .status(404)
-        .json({ success: false, reason: "unable to find user" });
+        .json({ success: false, data: "unable to find user" });
     }
     //validating password
     const passwordMatch = await bcrypt.compare(data.password, user.password);
@@ -120,11 +119,12 @@ export const login = async (req, res) => {
       const newRefreshToken = RefreshToken(refreshTokenObject);
       await newRefreshToken.save();
 
-      return res.status(200).json({ success: true });
+      const { password, ...returnUser } = user.toObject();
+      return res.status(200).json({ success: true, data: returnUser });
     } else {
       return res
         .status(400)
-        .json({ success: false, reason: "passwords dont match" });
+        .json({ success: false, data: "passwords dont match" });
     }
   } catch (err) {
     return res.status(500).json({ success: false, data: err.message });

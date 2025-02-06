@@ -1,5 +1,5 @@
 .main-container {
-  min-height: 100vh;
+  min-height: 90vh;
   background-color: rgba(144, 238, 144,0.5);
   color: rgb(0, 140, 255);
   align-items: center;
@@ -28,7 +28,7 @@
 }
 
 .form-btn {
-  margin-top: 20px;
+  margin-top: 2rem;
 padding: 10px 20px 10px 20px;
 }
 

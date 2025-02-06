@@ -1,5 +1,5 @@
 import { Modal, Button, TextInput, Textarea } from "@mantine/core";
-import { useClickOutside, useDisclosure } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
 import { updateClicked } from "../../utility/fetchLessons";
 import { useForm } from "@mantine/form";
 import { useContext, useEffect, useState } from "react";
@@ -58,16 +58,16 @@ function LessonModal({ data }) {
             <li><strong>Email:</strong> ${values.email}</li>
             <li><strong>Booking Date:</strong> ${values.date}</li>
           </ul>
-    
+          <br>
           <h3>What would you like to improve?</h3>
           <p>${values.text}</p>
-    
+          <br>
           <p>If you have any other questions, feel free to contact us.</p>
     
           <footer>
-            <p>Thank you for choosing our service!</p>
+            <p>Thanks for learning table tennis at Richard TT.</p>
             <p>Best regards,</p>
-            <p>Your Team</p>
+            <p>Richard and friends</p>
           </footer>
         </body>
       </html>
@@ -75,19 +75,21 @@ function LessonModal({ data }) {
 
       data = {
         recipient: user.email,
-        subject: `Scheduling coaching with ${values.firstname} ${values.lastname}`,
+        subject: `Scheduling coaching for ${values.firstname} ${values.lastname}`,
         html: htmlContent,
       };
 
       const result = await submitInquiry(data);
 
+      if (result.success) {
+        setSuccess(true);
+      } else {
+        setInvalid(true);
+      }
+
       setTimeout(() => {
-        if (result.success) {
-          setSuccess(true);
-        } else {
-          setInvalid(true);
-        }
-      }, 500);
+        close();
+      }, 700);
     } catch (err) {
       console.log(err.message);
     }

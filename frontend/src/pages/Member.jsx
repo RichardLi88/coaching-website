@@ -1,5 +1,7 @@
+import Background from "../components/utility/Background";
+
 function Member() {
-  return <div></div>;
+  return <Background>Hello</Background>;
 }
 
 export default Member;

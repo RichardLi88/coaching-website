@@ -1,5 +1,5 @@
 import { Box, Container, Flex, Title } from "@mantine/core";
-import styles from "../css/Lessons.module.css";
+import styles from "../css/pages/Lessons.module.css";
 import LessonGrid from "../components/LessonGrid";
 import LessonProvider from "../contexts/LessonContext";
 import PopularLessonCard from "../components/PopularLessonCard";

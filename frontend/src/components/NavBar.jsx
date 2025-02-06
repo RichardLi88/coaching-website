@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import tt_bat from "../images/tt_bat.svg";
 import { useSessionStorage } from "@mantine/hooks";
-import { Avatar, Button, Group, Text, Tooltip, Menu } from "@mantine/core";
-import Classes from "../css/NavBar.module.css";
+import { Avatar, Button, Group, Text, Menu } from "@mantine/core";
+import styles from "../css/components/NavBar.module.css";
 import { useContext } from "react";
 import { userContext } from "../contexts/UserContext";
 import { IconSettings, IconTrash, IconUser } from "@tabler/icons-react";
@@ -20,10 +20,10 @@ function NavBar() {
   }
 
   return (
-    <div className={Classes.navcontainer}>
-      <div className={Classes["nav-left"]}>
+    <div className={styles.navcontainer}>
+      <div className={styles["nav-left"]}>
         <Text
-          className={Classes.navtitle}
+          className={styles.navtitle}
           fw={700}
           variant="gradient"
           size="xl"
@@ -32,16 +32,16 @@ function NavBar() {
         >
           Richard TT
         </Text>
-        <div className={Classes.imgcontainer}>
-          <img src={tt_bat} alt="table tennis bat" className={Classes.navimg} />
+        <div className={styles.imgcontainer}>
+          <img src={tt_bat} alt="table tennis bat" className={styles.navimg} />
         </div>
       </div>
-      <Group className={Classes["nav-mid"]} justify="center">
-        <Link className={Classes.navlink} to="/">
+      <Group className={styles["nav-mid"]} justify="center">
+        <Link className={styles.navlink} to="/">
           <Button
             classNames={{
-              root: `${currentPage === "home" ? Classes.focused : ""} ${
-                Classes.navtab
+              root: `${currentPage === "home" ? styles.focused : ""} ${
+                styles.navtab
               }`,
             }}
             variant="subtle"
@@ -53,9 +53,9 @@ function NavBar() {
             Home
           </Button>
         </Link>
-        <Link className={Classes.navlink} to="/about">
+        <Link className={styles.navlink} to="/about">
           <Button
-            className={currentPage === "about" ? Classes.focused : ""}
+            className={currentPage === "about" ? styles.focused : ""}
             variant="subtle"
             radius="xl"
             onClick={() => {
@@ -65,9 +65,9 @@ function NavBar() {
             About
           </Button>
         </Link>
-        <Link className={Classes.navlink} to="/lessons">
+        <Link className={styles.navlink} to="/lessons">
           <Button
-            className={currentPage === "lessons" ? Classes.focused : ""}
+            className={currentPage === "lessons" ? styles.focused : ""}
             variant="subtle"
             radius="xl"
             onClick={() => {
@@ -78,20 +78,20 @@ function NavBar() {
           </Button>
         </Link>
         <Button
-          className={currentPage === "inquire" ? Classes.focused : ""}
+          className={currentPage === "inquire" ? styles.focused : ""}
           variant="subtle"
           radius="xl"
           onClick={() => {
             toggleFocus("inquire");
           }}
         >
-          <Link className={Classes.navlink} to="/inquire">
+          <Link className={styles.navlink} to="/inquire">
             Inquire
           </Link>
         </Button>
-        <Link className={Classes.navlink} to="/more">
+        <Link className={styles.navlink} to="/more">
           <Button
-            className={currentPage === "more" ? Classes.focused : ""}
+            className={currentPage === "more" ? styles.focused : ""}
             variant="subtle"
             radius="xl"
             onClick={() => {
@@ -102,9 +102,9 @@ function NavBar() {
           </Button>
         </Link>
         {user && (
-          <Link className={Classes.navlink} to="/member">
+          <Link className={styles.navlink} to="/member">
             <Button
-              className={currentPage === "member" ? Classes.focused : ""}
+              className={currentPage === "member" ? styles.focused : ""}
               variant="subtle"
               radius="xl"
               onClick={() => {
@@ -117,13 +117,13 @@ function NavBar() {
         )}
       </Group>
       <Group
-        className={Classes["nav-right"]}
+        className={styles["nav-right"]}
         justify="flex-end"
         gap="xl"
         mr={20}
       >
         {!user && (
-          <Link className={Classes.navlink} to="/signup">
+          <Link className={styles.navlink} to="/signup">
             <Button
               variant="gradient"
               onClick={() => {
@@ -135,7 +135,7 @@ function NavBar() {
           </Link>
         )}
         {!user && (
-          <Link className={Classes.navlink} to="/login">
+          <Link className={styles.navlink} to="/login">
             <Button
               variant="gradient"
               onClick={() => {
@@ -147,7 +147,7 @@ function NavBar() {
           </Link>
         )}
         {user && (
-          <Link className={Classes.navlink} to="/">
+          <Link className={styles.navlink} to="/">
             <Button
               variant="gradient"
               onClick={() => {
@@ -170,7 +170,7 @@ function NavBar() {
                 name={user.firstname + " " + user.lastname}
                 color="cyan"
                 size="lg"
-                className={Classes["avatar"]}
+                className={styles["avatar"]}
               />
             </Menu.Target>
             <Menu.Dropdown>

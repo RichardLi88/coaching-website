@@ -1,14 +1,13 @@
 import "./css/App.module.css";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import { MantineProvider } from "@mantine/core";
-import Footer from "./components/Footer";
+import Footer from "./components/utility/Footer";
 import { useContext, useEffect } from "react";
 import { userContext } from "./contexts/UserContext";
-
 import { lazy, Suspense } from "react";
 
 const About = lazy(() => import("./pages/About"));

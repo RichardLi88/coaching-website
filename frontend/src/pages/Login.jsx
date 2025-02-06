@@ -1,7 +1,7 @@
 import { Flex, TextInput, PasswordInput, Title, Button } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import styles from "../css/Login.module.css";
+import styles from "../css/pages/Login.module.css";
 import { useForm } from "@mantine/form";
 import InvalidNotif from "../components/popups/InvalidNotif";
 import SuccessNotif from "../components/popups/SuccessNotif";

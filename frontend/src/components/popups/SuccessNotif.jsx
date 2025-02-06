@@ -1,6 +1,6 @@
 import { IconCheck } from "@tabler/icons-react";
 import { Notification } from "@mantine/core";
-import styles from "../../css/Notifications.module.css";
+import styles from "../../css/components/Notifications.module.css";
 import { useEffect } from "react";
 
 function SuccessNotif({ close, title, reason }) {

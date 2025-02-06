@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 import recreational from "../images/recreational.jpg";
 import { useForm } from "@mantine/form";
-import styles from "../css/SignUp.module.css";
+import styles from "../css/pages/SignUp.module.css";
 import { useState } from "react";
 import { simpleValidateSignUp } from "../utility/Validate";
 import { signUp } from "../utility/fetchAuthentication";

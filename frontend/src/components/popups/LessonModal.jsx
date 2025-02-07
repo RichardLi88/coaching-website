@@ -127,7 +127,6 @@ function LessonModal({ data }) {
           <DateInput
             withAsterisk
             clearable
-            defaultValue={new Date()}
             key={form.key("date")}
             {...form.getInputProps("date")}
             label={"Choose a date"}

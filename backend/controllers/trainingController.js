@@ -7,7 +7,8 @@ export const validateTrainingLog = async (req, res, then) => {
     !data.trainingType ||
     !data.duration ||
     !data.date ||
-    !data.venue
+    !data.venue ||
+    !data.desc
   ) {
     return res
       .status(400)

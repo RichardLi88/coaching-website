@@ -34,6 +34,7 @@ function MemberSideBar({ value }) {
           <NavLink
             href="#required-for-focus"
             key={item.label}
+            variant="filled"
             active={index === active}
             label={item.label}
             leftSection={<item.icon size={16} stroke={1.5} />}

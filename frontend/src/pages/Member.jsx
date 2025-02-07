@@ -26,11 +26,20 @@ function Member() {
         align="center"
       >
         <MemberSideBar value={{ active, setActive }} />
-        <Suspense>
-          {active === 0 && <TrainingVolume />}
-          {active === 1 && <LogTraining />}
-          {active === 2 && <TrainingHistory />}
-        </Suspense>
+        <Flex
+          w={`100%`}
+          h={`100%`}
+          bg="lightblue"
+          justify="center"
+          align="center"
+          p={50}
+        >
+          <Suspense>
+            {active === 0 && <TrainingVolume />}
+            {active === 1 && <LogTraining />}
+            {active === 2 && <TrainingHistory />}
+          </Suspense>
+        </Flex>
       </Flex>
     </Background>
   );

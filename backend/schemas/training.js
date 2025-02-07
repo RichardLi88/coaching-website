@@ -16,7 +16,11 @@ const trainingSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    require: true,
+    required: true,
+  },
+  desc: {
+    type: String,
+    required: true,
   },
   venue: {
     type: String,

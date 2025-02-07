@@ -83,7 +83,6 @@ export const login = async (req, res) => {
   //fetching from database
   try {
     const user = await User.findOne({ username: data.username });
-
     if (!user) {
       return res
         .status(404)

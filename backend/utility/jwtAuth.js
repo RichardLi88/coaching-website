@@ -39,6 +39,7 @@ export async function verify(req, res, next) {
         if (renewToken(req, res)) {
           next();
         } else {
+          console.log("this", req.cookies.REFRESH_TOKEN_SECRET);
           res.status(400).json({ success: false, error: "Not authorised" });
         }
       } else {

@@ -41,6 +41,7 @@ export const getTrainingChart = async (req, res) => {
 
   try {
     const trainings = await Training.find({ userId: id }).sort({ date: 1 });
+
     const returnedData = trainings.map((t) => {
       return {
         trainingType: t.trainingType,

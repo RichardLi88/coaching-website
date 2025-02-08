@@ -8,11 +8,10 @@ import {
   Flex,
   Button,
 } from "@mantine/core";
-import { DateInput } from "@mantine/dates";
+import { DateInput, DatesProvider } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import { submitTrainingLog } from "../../utility/submit";
-import { useContext, useState } from "react";
-import { userContext } from "../../contexts/UserContext";
+import { useState } from "react";
 import { lazy, Suspense } from "react";
 
 const trainingTypes = ["private", "group", "service", "competition", "casual"];
@@ -34,6 +33,7 @@ function LogTraining() {
   async function formSubmitHandler(values) {
     try {
       const result = await submitTrainingLog(values);
+      console.log(values.date);
       if (result.success) {
         setSuccess(true);
         form.reset();
@@ -66,14 +66,16 @@ function LogTraining() {
             allowNegative={false}
             hideControls
           />
-          <DateInput
-            clearable
-            defaultValue={new Date()}
-            key={form.key("date")}
-            {...form.getInputProps("date")}
-            label={"Date"}
-            placeholder="Choose a date"
-          />
+          <DatesProvider timezone={"utc"}>
+            <DateInput
+              clearable
+              defaultValue={new Date()}
+              key={form.key("date")}
+              {...form.getInputProps("date")}
+              label={"Date"}
+              placeholder="Choose a date"
+            />
+          </DatesProvider>
           <TextInput
             label="Venue"
             placeholder="Training venue"

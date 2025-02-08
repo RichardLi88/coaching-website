@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const submitInquiry = async (data) => {
   try {
     const result = await fetch("http://localhost:5000/api/lessons/submit", {
@@ -33,6 +35,12 @@ export const submitTrainingLog = async (data) => {
   }
 };
 
+const f = new Intl.DateTimeFormat("en-au", {
+  dateStyle: "medium",
+  timeStyle: "short",
+  timeZone: "Australia/Sydney",
+});
+
 export const getData = async () => {
   try {
     const result = await fetch(
@@ -48,25 +56,39 @@ export const getData = async () => {
 
     let processedData = [];
 
-    const rawData = await result.json();
-    console.log(rawData);
+    for (let i = 7; i > 0; i--) {
+      let date = new Date(Date.now() - i * 24 * 60 * 60 * 1000);
 
-    rawData.forEach((data) => {
-      if (processedData.at(-1) && processedData.at(-1).date === data.date) {
-        processedData.at(-1)[data.trainingType] += data.duration;
-      } else {
-        processedData.push({
-          date: data.date,
-          private: 0,
-          group: 0,
-          service: 0,
-          competition: 0,
-          casual: 0,
-        });
-        processedData.at(-1)[data.trainingType] += data.duration;
+      const newDate = f.format(date).split(" ");
+      const finalDate = newDate[0] + "-" + newDate[1];
+      processedData.push({
+        date: finalDate,
+        private: 0,
+        group: 0,
+        service: 0,
+        competition: 0,
+        casual: 0,
+      });
+    }
+
+    const rawData = await result.json();
+
+    rawData.data.forEach((data) => {
+      const newDate = f.format(new Date(data.date)).split(" ");
+      const finalDate = newDate[0] + "-" + newDate[1];
+      let index = 0;
+      while (true) {
+        if (processedData[index].date === finalDate) {
+          processedData[index][data.trainingType] += data.duration;
+          break;
+        } else {
+          index += 1;
+          if (index === processedData.length) {
+            break;
+          }
+        }
       }
     });
-
     return processedData;
   } catch (err) {
     console.log(err.message);

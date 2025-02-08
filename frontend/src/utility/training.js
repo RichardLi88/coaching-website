@@ -1,5 +1,3 @@
-import dayjs from "dayjs";
-
 export const submitInquiry = async (data) => {
   try {
     const result = await fetch("http://localhost:5000/api/lessons/submit", {
@@ -41,6 +39,12 @@ const f = new Intl.DateTimeFormat("en-au", {
   timeZone: "Australia/Sydney",
 });
 
+export function formatDate(date) {
+  const newDate = f.format(date).split(" ");
+  const finalDate = newDate[0] + "-" + newDate[1];
+  return finalDate;
+}
+
 export const getData = async () => {
   try {
     const result = await fetch(
@@ -58,9 +62,8 @@ export const getData = async () => {
 
     for (let i = 7; i > 0; i--) {
       let date = new Date(Date.now() - i * 24 * 60 * 60 * 1000);
+      let finalDate = formatDate(date);
 
-      const newDate = f.format(date).split(" ");
-      const finalDate = newDate[0] + "-" + newDate[1];
       processedData.push({
         date: finalDate,
         private: 0,
@@ -72,13 +75,12 @@ export const getData = async () => {
     }
 
     const rawData = await result.json();
-
     rawData.data.forEach((data) => {
-      const newDate = f.format(new Date(data.date)).split(" ");
-      const finalDate = newDate[0] + "-" + newDate[1];
+      const newDate = formatDate(new Date(data.date));
+
       let index = 0;
       while (true) {
-        if (processedData[index].date === finalDate) {
+        if (processedData[index].date === newDate) {
           processedData[index][data.trainingType] += data.duration;
           break;
         } else {
@@ -90,6 +92,25 @@ export const getData = async () => {
       }
     });
     return processedData;
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+export const getTrainingHistory = async () => {
+  try {
+    const result = await fetch(
+      `http://localhost:5000/api/training/get/history`,
+      {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await result.json();
+    return data;
   } catch (err) {
     console.log(err.message);
   }

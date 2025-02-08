@@ -10,7 +10,7 @@ import {
 } from "@mantine/core";
 import { DateInput, DatesProvider } from "@mantine/dates";
 import { useForm } from "@mantine/form";
-import { submitTrainingLog } from "../../utility/submit";
+import { submitTrainingLog } from "../../utility/training";
 import { useState } from "react";
 import { lazy, Suspense } from "react";
 

@@ -5,7 +5,7 @@ import { useForm } from "@mantine/form";
 import { useContext, useEffect, useState } from "react";
 import { userContext } from "../../contexts/UserContext";
 import { DateInput } from "@mantine/dates";
-import { submitInquiry } from "../../utility/submit";
+import { submitInquiry } from "../../utility/training";
 import SuccessNotif from "./SuccessNotif";
 import InvalidNotif from "./InvalidNotif";
 

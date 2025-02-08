@@ -56,3 +56,15 @@ export const getTrainingChart = async (req, res) => {
     console.log(err.message);
   }
 };
+
+export const getTrainingHistory = async (req, res) => {
+  const id = req.user.id;
+
+  try {
+    const trainings = await Training.find({ userId: id }).sort({ date: -1 });
+    return res.status(200).json({ success: true, data: trainings });
+  } catch (err) {
+    res.status(500).json({ success: false, data: err.message });
+    console.log(err.message);
+  }
+};

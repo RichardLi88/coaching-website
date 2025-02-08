@@ -1,0 +1,15 @@
+.training-desc {
+  text-overflow: ellipsis;
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block
+}
+
+.training-card{
+  transition: all 200ms;
+}
+.training-card:hover {
+  background-color: rgb(0, 190, 253) !important;
+  scale: 1.02;
+}

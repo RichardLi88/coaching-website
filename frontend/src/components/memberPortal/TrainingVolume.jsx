@@ -1,7 +1,7 @@
 import { BarChart } from "@mantine/charts";
 import { Flex, Title } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { getData } from "../../utility/submit";
+import { getData } from "../../utility/training";
 function TrainingVolume() {
   const [data, setData] = useState([]);
   useEffect(() => {

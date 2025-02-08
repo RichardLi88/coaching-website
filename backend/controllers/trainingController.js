@@ -3,7 +3,7 @@ import Training from "../schemas/training.js";
 export const validateTrainingLog = async (req, res, then) => {
   const data = req.body;
   if (
-    !data.id ||
+    !data.userid ||
     !data.trainingType ||
     !data.duration ||
     !data.date ||

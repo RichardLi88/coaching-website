@@ -18,7 +18,7 @@ export const submitInquiry = async (data) => {
 export const submitTrainingLog = async (data) => {
   try {
     const result = await fetch(
-      `http://localhost:5000/api/training/create/${data.id}`,
+      `http://localhost:5000/api/training/create/${data.userid}`,
       {
         method: "POST",
         credentials: "include",

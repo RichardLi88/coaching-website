@@ -34,7 +34,7 @@ function LogTraining() {
 
   async function formSubmitHandler(values) {
     try {
-      const result = await submitTrainingLog({ ...values, id: user._id });
+      const result = await submitTrainingLog({ ...values, userid: user._id });
       if (result.success) {
         setSuccess(true);
         form.reset();

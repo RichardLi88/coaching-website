@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const trainingSchema = new mongoose.Schema({
-  id: {
+  userid: {
     type: String,
     required: true,
   },

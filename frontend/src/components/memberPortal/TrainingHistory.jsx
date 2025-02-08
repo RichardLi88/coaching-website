@@ -1,7 +1,13 @@
-import { Flex } from "@mantine/core";
+import { SimpleGrid } from "@mantine/core";
 
 function TrainingHistory() {
-  return <Flex w={`100%`} h={`100%`} bg="lightblue"></Flex>;
+  return (
+    <SimpleGrid
+      cols={{ base: 1, sm: 2 }}
+      verticalSPacing={md}
+      spacing={10}
+    ></SimpleGrid>
+  );
 }
 
 export default TrainingHistory;

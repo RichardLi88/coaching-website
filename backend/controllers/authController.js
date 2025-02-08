@@ -95,6 +95,7 @@ export const login = async (req, res) => {
       if (req.cookies.refreshToken) {
         RefreshToken.findOneAndDelete({ username: user.username });
       }
+
       //generating new access and refresh token
       const accessToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
@@ -126,6 +127,7 @@ export const login = async (req, res) => {
         .json({ success: false, data: "passwords dont match" });
     }
   } catch (err) {
+    console.log("here");
     return res.status(500).json({ success: false, data: err.message });
   }
 };

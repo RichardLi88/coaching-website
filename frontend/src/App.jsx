@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import { Routes, Route } from "react-router-dom";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import "@mantine/charts/styles.css";
 import { MantineProvider } from "@mantine/core";
 import Footer from "./components/utility/Footer";
 import { useContext, useEffect } from "react";

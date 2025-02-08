@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import User from "../schemas/user.js";
 
 export function generateAccessToken(user) {
   return jwt.sign(
@@ -30,16 +31,22 @@ export function generateRefreshToken(user) {
   );
 }
 
-export async function verify(req, res, next) {
+export function verify(req, res, next) {
+  if (!req.cookies.accessToken && !req.cookies.refreshToken) {
+    return res.status(400).json({ success: false, data: "not signed in" });
+  }
   jwt.verify(
     req.cookies.accessToken,
     process.env.ACCESS_TOKEN_SECRET,
-    (err, user) => {
+    async (err, user) => {
       if (err) {
-        if (renewToken(req, res)) {
+        const result = await renewToken(req, res);
+        if (result) {
           next();
         } else {
-          res.status(400).json({ success: false, error: "Not authorised" });
+          return res
+            .status(400)
+            .json({ success: false, error: "Not authorised" });
         }
       } else {
         req.user = user;
@@ -49,28 +56,34 @@ export async function verify(req, res, next) {
   );
 }
 
-function renewToken(req, res) {
-  let validRefreshToken = false;
-  if (req.cookies.refreshToken) {
-    jwt.verify(
-      req.cookies.refreshToken,
-      process.env.REFRESH_TOKEN_SECRET,
-      (err, user) => {
-        if (err) {
-          return res.json({ success: false, error: err.message });
-        } else {
-          const accessToken = generateAccessToken(user);
-          res.cookie("accessToken", accessToken, {
-            maxAge: 15 * 60 * 1000,
-            httpOnly: true,
-          });
-          req.user = user;
-          validRefreshToken = true;
-        }
-      }
-    );
+async function renewToken(req, res) {
+  if (!req.cookies.refreshToken) {
+    return false;
   }
-  return validRefreshToken;
+
+  try {
+    const payload = jwt.verify(
+      req.cookies.refreshToken,
+      process.env.REFRESH_TOKEN_SECRET
+    );
+
+    const user = await User.findById(payload.id);
+    if (!user) {
+      return false;
+    }
+    const accessToken = generateAccessToken(user);
+
+    res.cookie("accessToken", accessToken, {
+      maxAge: 15 * 60 * 1000,
+      httpOnly: true,
+    });
+
+    req.user = payload;
+    return true;
+  } catch (err) {
+    console.log(err.message);
+    return false;
+  }
 }
 
 export async function adminVerify(req, res, next) {
@@ -80,16 +93,5 @@ export async function adminVerify(req, res, next) {
     return res
       .status(400)
       .json({ success: false, message: "Members are not authorised." });
-  }
-}
-
-export async function verifyUser(req, res, next) {
-  //verifies that the user matches the user they are making the request for
-  if (req.user._id === req.body.userid) {
-    next();
-  } else {
-    return res
-      .status(400)
-      .json({ success: false, data: "attempting to modify another user" });
   }
 }

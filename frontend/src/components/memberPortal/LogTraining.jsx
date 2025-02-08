@@ -22,7 +22,6 @@ const SuccessNotif = lazy(() => import("../popups/SuccessNotif"));
 function LogTraining() {
   const [invalid, setInvalid] = useState(false);
   const [success, setSuccess] = useState(false);
-  const { user } = useContext(userContext);
   const form = useForm({
     mode: "uncontrolled",
     trainingType: "",
@@ -34,7 +33,7 @@ function LogTraining() {
 
   async function formSubmitHandler(values) {
     try {
-      const result = await submitTrainingLog({ ...values, userid: user._id });
+      const result = await submitTrainingLog(values);
       if (result.success) {
         setSuccess(true);
         form.reset();

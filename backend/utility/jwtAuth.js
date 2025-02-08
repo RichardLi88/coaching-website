@@ -39,7 +39,6 @@ export async function verify(req, res, next) {
         if (renewToken(req, res)) {
           next();
         } else {
-          console.log("this", req.cookies.REFRESH_TOKEN_SECRET);
           res.status(400).json({ success: false, error: "Not authorised" });
         }
       } else {
@@ -81,5 +80,16 @@ export async function adminVerify(req, res, next) {
     return res
       .status(400)
       .json({ success: false, message: "Members are not authorised." });
+  }
+}
+
+export async function verifyUser(req, res, next) {
+  //verifies that the user matches the user they are making the request for
+  if (req.user._id === req.body.userid) {
+    next();
+  } else {
+    return res
+      .status(400)
+      .json({ success: false, data: "attempting to modify another user" });
   }
 }

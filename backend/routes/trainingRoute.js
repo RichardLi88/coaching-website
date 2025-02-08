@@ -3,7 +3,7 @@ import {
   createTrainingLog,
   validateTrainingLog,
 } from "../controllers/trainingController.js";
-import { verify } from "../utility/jwtAuth.js";
+import { verify, verifyUser } from "../utility/jwtAuth.js";
 
 const trainingRouter = express.Router();
 
@@ -11,6 +11,7 @@ trainingRouter.get("/fetch/:id");
 trainingRouter.post(
   "/create/:id",
   verify,
+  verifyUser,
   validateTrainingLog,
   createTrainingLog
 );

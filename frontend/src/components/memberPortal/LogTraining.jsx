@@ -85,7 +85,7 @@ function LogTraining() {
             label="Training description"
             placeholder="Details of your training session"
             resize="vertical"
-            size="lg"
+            size="md"
             radius="md"
             key={form.key("desc")}
             {...form.getInputProps("desc")}

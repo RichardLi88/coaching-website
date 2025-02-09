@@ -16,7 +16,7 @@ lessonRouter.get("/fetch", getLessons);
 lessonRouter.get("/fetch/best", getBestLesson);
 lessonRouter.put("/update/:id", verify, adminVerify, updateLesson);
 lessonRouter.put("/update/clicked/:id", updateClickedLesson);
-lessonRouter.post("/create", verify, adminVerify, createLesson);
+lessonRouter.post("/create", verify, createLesson);
 lessonRouter.delete("/delete/:id", verify, adminVerify, deleteLesson);
 lessonRouter.post("/submit", submitInquiry);
 

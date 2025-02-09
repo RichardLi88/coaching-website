@@ -31,3 +31,19 @@ export async function login(data) {
     console.log(err.message);
   }
 }
+
+export async function logout() {
+  try {
+    const response = await fetch("http://localhost:5000/api/user/logout", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const processedData = await response.json();
+    return processedData;
+  } catch (err) {
+    console.log(err.message);
+  }
+}

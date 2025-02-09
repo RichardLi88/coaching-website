@@ -1,4 +1,5 @@
 import { useState, createContext } from "react";
+import { logout } from "../utility/fetchAuthentication";
 
 export const userContext = createContext();
 
@@ -6,6 +7,7 @@ function UserProvider({ children }) {
   const [user, setUser] = useState(null);
 
   function userContextLogout() {
+    logout();
     setUser(null);
     localStorage.setItem("user", null);
   }

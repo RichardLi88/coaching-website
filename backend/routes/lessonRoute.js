@@ -18,6 +18,6 @@ lessonRouter.put("/update/:id", verify, adminVerify, updateLesson);
 lessonRouter.put("/update/clicked/:id", updateClickedLesson);
 lessonRouter.post("/create", verify, createLesson);
 lessonRouter.delete("/delete/:id", verify, adminVerify, deleteLesson);
-lessonRouter.post("/submit", submitInquiry);
+lessonRouter.post("/submit", verify, submitInquiry);
 
 export default lessonRouter;

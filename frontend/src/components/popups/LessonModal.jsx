@@ -8,12 +8,14 @@ import { DateInput } from "@mantine/dates";
 import { submitInquiry } from "../../utility/training";
 import SuccessNotif from "./SuccessNotif";
 import InvalidNotif from "./InvalidNotif";
+import { useNavigate } from "react-router-dom";
 
 function LessonModal({ data }) {
   const [opened, { open, close }] = useDisclosure(false);
   const { user } = useContext(userContext);
   const [invalid, setInvalid] = useState(false);
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const form = useForm({
     mode: "uncontrolled",
@@ -37,6 +39,9 @@ function LessonModal({ data }) {
   }, [opened]);
 
   async function btnClicked() {
+    if (!user) {
+      navigate("/login", { replace: true });
+    }
     try {
       await updateClicked(data._id);
     } catch (err) {

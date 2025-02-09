@@ -59,10 +59,19 @@ export const getTrainingChart = async (req, res) => {
 
 export const getTrainingHistory = async (req, res) => {
   const id = req.user.id;
+  const current = req.params.current;
+  const retrieveAmount = 12;
 
   try {
-    const trainings = await Training.find({ userId: id }).sort({ date: -1 });
-    return res.status(200).json({ success: true, data: trainings });
+    const trainings = await Training.find({ userId: id })
+      .sort({ date: -1 })
+      .skip(current)
+      .limit(retrieveAmount);
+    return res.status(200).json({
+      success: true,
+      data: trainings,
+      more: trainings.length === retrieveAmount,
+    });
   } catch (err) {
     res.status(500).json({ success: false, data: err.message });
     console.log(err.message);

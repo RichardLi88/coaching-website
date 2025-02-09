@@ -10,7 +10,7 @@ import { verify } from "../utility/jwtAuth.js";
 const trainingRouter = express.Router();
 
 trainingRouter.get("/fetch/:period", verify, getTrainingChart);
-trainingRouter.get("/get/history", verify, getTrainingHistory);
+trainingRouter.get("/get/history/:current", verify, getTrainingHistory);
 trainingRouter.post("/create", verify, validateTrainingLog, createTrainingLog);
 //trainingRouter.put("/edit");
 //trainingRouter.delete("/delete");

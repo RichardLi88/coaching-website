@@ -97,10 +97,11 @@ export const getData = async () => {
   }
 };
 
-export const getTrainingHistory = async () => {
+export const getTrainingHistory = async (current) => {
+  console.log("OMG", current);
   try {
     const result = await fetch(
-      `http://localhost:5000/api/training/get/history`,
+      `http://localhost:5000/api/training/get/history/${current}`,
       {
         method: "GET",
         credentials: "include",
@@ -110,6 +111,7 @@ export const getTrainingHistory = async () => {
       }
     );
     const data = await result.json();
+    console.log(data);
     return data;
   } catch (err) {
     console.log(err.message);

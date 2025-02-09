@@ -1,5 +1,5 @@
-import { ScrollArea, SimpleGrid, Stack, Text, Title } from "@mantine/core";
-import { useEffect, useState } from "react";
+import { Button, ScrollArea, SimpleGrid, Stack, Text } from "@mantine/core";
+import { useEffect, useRef, useState } from "react";
 import { formatDate, getTrainingHistory } from "../../utility/training";
 import TrainingCard from "../TrainingCard";
 import styles from "../../css/components/MemberC.module.css";
@@ -14,23 +14,34 @@ const badgeColour = {
 
 function TrainingHistory() {
   const [trainings, setTrainings] = useState([]);
-  useEffect(() => {
-    async function getAllTraining() {
-      const data = await getTrainingHistory();
-      if (!data.success) {
-        console.log("failed", data.data);
-        return;
-      }
+  const [currentTrainingCount, setcurrentTrainingCount] = useState(0);
+  const [loadMore, setLoadMore] = useState(false);
+  const rendered = useRef(false);
 
-      const tData = data.data;
-      tData.forEach((data) => {
-        const formattedDate = formatDate(new Date(data.date));
-        data.date = formattedDate;
-      });
-      setTrainings(tData);
+  useEffect(() => {
+    if (!rendered.current) {
+      rendered.current = true;
+      getAllTraining();
     }
-    getAllTraining();
   }, []);
+
+  async function getAllTraining() {
+    const data = await getTrainingHistory(currentTrainingCount);
+    if (!data.success) {
+      console.log("failed", data.data);
+      return;
+    }
+
+    setLoadMore(data.more);
+    const tData = data.data;
+    tData.forEach((data) => {
+      const formattedDate = formatDate(new Date(data.date));
+      data.date = formattedDate;
+    });
+    setTrainings((prev) => [...prev, ...tData]);
+    setcurrentTrainingCount((prev) => prev + tData.length);
+  }
+
   return (
     <>
       <Stack w={`100%`} h={`100%`} p={20}>
@@ -62,6 +73,16 @@ function TrainingHistory() {
               );
             })}
           </SimpleGrid>
+          {loadMore && (
+            <Button
+              variant="gradient"
+              gradient={{ from: "blue", to: "cyan", deg: 90 }}
+              mt={20}
+              onClick={getAllTraining}
+            >
+              Load More
+            </Button>
+          )}
         </ScrollArea>
       </Stack>
     </>

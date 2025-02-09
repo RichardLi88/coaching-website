@@ -38,7 +38,7 @@ function LessonModal({ data }) {
 
   async function btnClicked() {
     try {
-      const result = await updateClicked(data._id);
+      await updateClicked(data._id);
     } catch (err) {
       console.log(err.message);
     }
@@ -49,14 +49,14 @@ function LessonModal({ data }) {
       const htmlContent = `
       <html>
         <body>
-          <h1>Booking Confirmation</h1>
+          <h1>Inquiry Confirmation</h1>
           <p>Dear ${values.firstname} ${values.lastname},</p>
-          <p>Thank you for your booking! We are excited to confirm your reservation.</p>
+          <p>Thank you for expressing your interest to learn from us. We will attempt to arrange a suitable time for you on this day.</p>
           
-          <h3>Booking Details:</h3>
+          <h3>Inquiry Details:</h3>
           <ul>
             <li><strong>Email:</strong> ${values.email}</li>
-            <li><strong>Booking Date:</strong> ${values.date}</li>
+            <li><strong>Date:</strong> ${values.date}</li>
           </ul>
           <br>
           <h3>What would you like to improve?</h3>

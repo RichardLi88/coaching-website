@@ -17,7 +17,7 @@ function Lessons() {
               </div>
             </Box>
           </Flex>
-          <Title align="center" order={1}>
+          <Title align="center" order={1} c="blue">
             All lesson plans
           </Title>
           <Container fluid mt={10}>

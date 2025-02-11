@@ -1,7 +1,7 @@
 import { Flex, Text } from "@mantine/core";
 import LessonCard from "./LessonCard";
 import { useContext, useEffect } from "react";
-import { lessonContext } from "../contexts/LessonContext";
+import { lessonContext } from "../../contexts/LessonContext";
 
 function PopularLessonCard() {
   const { bestLesson, getBestLesson } = useContext(lessonContext);

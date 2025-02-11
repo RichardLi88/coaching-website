@@ -1,8 +1,8 @@
 import { Box, Container, Flex, Title } from "@mantine/core";
 import styles from "../css/pages/Lessons.module.css";
-import LessonGrid from "../components/LessonGrid";
+import LessonGrid from "../components/lesson/LessonGrid";
 import LessonProvider from "../contexts/LessonContext";
-import PopularLessonCard from "../components/PopularLessonCard";
+import PopularLessonCard from "../components/lesson/PopularLessonCard";
 import EditLesson from "../components/lesson/editLesson";
 import { useContext } from "react";
 import { userContext } from "../contexts/UserContext";
@@ -20,7 +20,7 @@ function Lessons() {
           pos="relative"
         >
           <Flex pos="absolute" top={20} right={20}>
-            <EditLesson status="create" />
+            {user && user.isAdmin && <EditLesson status="create" />}
           </Flex>
           <Flex h={"50vh"} justify="space-between" align="center">
             <Box className={styles["hot-desc"]}></Box>

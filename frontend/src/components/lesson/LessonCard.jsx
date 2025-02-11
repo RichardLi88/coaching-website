@@ -1,9 +1,9 @@
-import { Card, Text, Group, Image, Flex, Box } from "@mantine/core";
-import LessonModal from "./popups/LessonModal";
-import EditLesson from "./lesson/editLesson";
-import DeleteModal from "./lesson/DeleteModal";
+import { Card, Text, Group, Image, Flex } from "@mantine/core";
+import LessonModal from "../popups/LessonModal";
+import EditLesson from "./editLesson";
+import DeleteModal from "./DeleteModal";
 import { useContext } from "react";
-import { userContext } from "../contexts/UserContext";
+import { userContext } from "../../contexts/UserContext";
 
 function LessonCard({ data }) {
   const { user } = useContext(userContext);

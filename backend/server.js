@@ -6,6 +6,7 @@ import authRouter from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
 import lessonRouter from "./routes/lessonRoute.js";
 import trainingRouter from "./routes/trainingRoute.js";
+import youtubeRouter from "./routes/youtubeRoute.js";
 
 const app = express();
 app.use(express.json());
@@ -23,6 +24,7 @@ app.use(cors(corsOptions));
 app.use("/api/user", authRouter);
 app.use("/api/lessons", lessonRouter);
 app.use("/api/training", trainingRouter);
+app.use("/api/youtube", youtubeRouter);
 
 app.listen(5000, () => {
   connectDB();

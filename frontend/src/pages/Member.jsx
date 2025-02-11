@@ -16,7 +16,7 @@ const TrainingHistory = lazy(() =>
 function Member() {
   const [active, setActive] = useState(0);
   return (
-    <Background display="flex" flex="column">
+    <Background>
       <Flex
         w={`84vw`}
         mx={`8vw`}

@@ -78,18 +78,6 @@ function NavBar() {
             Lessons
           </Button>
         </Link>
-        <Button
-          className={currentPage === "inquire" ? styles.focused : ""}
-          variant="subtle"
-          radius="xl"
-          onClick={() => {
-            changePage("inquire");
-          }}
-        >
-          <Link className={styles.navlink} to="/inquire">
-            Inquire
-          </Link>
-        </Button>
         <Link className={styles.navlink} to="/more">
           <Button
             className={currentPage === "more" ? styles.focused : ""}

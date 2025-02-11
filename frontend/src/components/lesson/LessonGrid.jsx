@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import LessonCard from "../components/LessonCard";
+import LessonCard from "./LessonCard";
 import { SimpleGrid } from "@mantine/core";
 import { useContext } from "react";
-import { lessonContext } from "../contexts/LessonContext";
+import { lessonContext } from "../../contexts/LessonContext";
 
 function LessonGrid() {
   const { lessons, retrieveLessons } = useContext(lessonContext);

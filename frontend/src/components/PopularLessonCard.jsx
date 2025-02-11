@@ -1,15 +1,15 @@
 import { Flex, Text } from "@mantine/core";
 import LessonCard from "./LessonCard";
-import { useEffect, useState } from "react";
-import { getBestLesson } from "../utility/fetchLessons";
+import { useContext, useEffect } from "react";
+import { lessonContext } from "../contexts/LessonContext";
 
 function PopularLessonCard() {
-  const [lesson, setLesson] = useState({});
+  const { bestLesson, getBestLesson } = useContext(lessonContext);
   useEffect(() => {
     async function getPopularLesson() {
       try {
-        const data = await getBestLesson();
-        setLesson(data);
+        await getBestLesson();
+        console.log(bestLesson);
       } catch (err) {
         console.log(err.message);
       }
@@ -27,8 +27,8 @@ function PopularLessonCard() {
       >
         Most popular lesson plan!
       </Text>
-      <LessonCard key={lesson._id} data={lesson} />
-      <Text>{`Interacted with ${lesson.clicked} times!`}</Text>
+      <LessonCard key={bestLesson._id} data={bestLesson} />
+      <Text>{`Interacted with ${bestLesson.clicked} times!`}</Text>
     </Flex>
   );
 }

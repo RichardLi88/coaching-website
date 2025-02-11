@@ -22,10 +22,16 @@ export const createLesson = async (req, res) => {
 };
 
 export const deleteLesson = async (req, res) => {
-  const id = req.params;
-
+  const id = req.params.id;
   try {
-    Lesson.findByIdAndDelete(id);
+    const lesson = await Lesson.findById(id);
+    if (!lesson) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Lesson not found" });
+    }
+
+    await Lesson.findByIdAndDelete(id);
     res.status(200).json({ success: true, message: "successfully deleted" });
   } catch (err) {
     res.status(500).json({ success: false, data: err.message });

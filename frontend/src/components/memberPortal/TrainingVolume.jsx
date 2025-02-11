@@ -15,8 +15,8 @@ function TrainingVolume() {
 
   return (
     <Flex
-      w={`80%`}
-      h={`60%`}
+      w={`100%`}
+      h={`100%`}
       direction="column"
       justify="center"
       align="center"

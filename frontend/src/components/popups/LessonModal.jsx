@@ -110,21 +110,21 @@ function LessonModal({ data }) {
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           <TextInput
             withAsterisk
-            label="firstname"
-            placeholder="first name"
+            label="First name"
+            placeholder="First name"
             key={form.key("firstname")}
             {...form.getInputProps("firstname")}
           />
           <TextInput
             withAsterisk
-            label="lastname"
+            label="Last Name"
             placeholder="last name"
             key={form.key("lastname")}
             {...form.getInputProps("lastname")}
           />
           <TextInput
             withAsterisk
-            label="email"
+            label="Email"
             placeholder="email"
             key={form.key("email")}
             {...form.getInputProps("email")}
@@ -178,9 +178,8 @@ function LessonModal({ data }) {
 
       <Button
         color="blue"
-        fullWidth
-        mt="md"
         radius="lg"
+        flex="1"
         onClick={() => {
           btnClicked();
           open();

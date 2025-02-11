@@ -102,20 +102,6 @@ function NavBar() {
             More Info
           </Button>
         </Link>
-        {user && (
-          <Link className={styles.navlink} to="/member">
-            <Button
-              className={currentPage === "member" ? styles.focused : ""}
-              variant="subtle"
-              radius="xl"
-              onClick={() => {
-                changePage("member");
-              }}
-            >
-              Member Portal
-            </Button>
-          </Link>
-        )}
       </Group>
       <Group
         className={styles["nav-right"]}

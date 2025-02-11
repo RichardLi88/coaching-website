@@ -5,6 +5,7 @@ export const lessonContext = createContext();
 
 function LessonProvider({ children }) {
   const [lessons, setLessons] = useState([]);
+  const [bestLesson, setBestLesson] = useState([]);
   async function retrieveLessons() {
     try {
       const data = await getLessons();
@@ -14,16 +15,14 @@ function LessonProvider({ children }) {
     }
   }
 
-  async function getBestLessons(number) {
+  async function getBestLesson() {
     try {
       const data = await getLessons();
 
-      const rankedLessons = data.sort({ clicked: "asc" });
+      const rankedLessons = data.sort((a, b) => b.clicked - a.clicked);
       console.log(rankedLessons);
-      if (number > rankedLessons.length) {
-        return rankedLessons;
-      }
-      return rankedLessons.slice(0, number);
+
+      setBestLesson(rankedLessons[0]);
     } catch (err) {
       console.log(err.message);
     }
@@ -31,7 +30,7 @@ function LessonProvider({ children }) {
 
   return (
     <lessonContext.Provider
-      value={{ lessons, retrieveLessons, getBestLessons }}
+      value={{ lessons, bestLesson, retrieveLessons, getBestLesson }}
     >
       {children}
     </lessonContext.Provider>

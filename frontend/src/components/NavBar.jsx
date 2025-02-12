@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import tt_bat from "../images/tt_bat.svg";
-import { Avatar, Button, Group, Text, Menu } from "@mantine/core";
+import { Avatar, Button, Group, Text, Menu, Flex, Burger } from "@mantine/core";
 import styles from "../css/components/NavBar.module.css";
 import { useContext, useEffect, useState } from "react";
 import { userContext } from "../contexts/UserContext";
 import { IconSettings, IconTrash, IconUser } from "@tabler/icons-react";
+import { useDisclosure } from "@mantine/hooks";
 
 function NavBar() {
   const [currentPage, setCurrentPage] = useState("home");
+  const [opened, { toggle }] = useDisclosure();
+  const { user, userContextLogout } = useContext(userContext);
+  const [openMenu, setOpenMenu] = useState(false);
 
   useEffect(() => {
     const page = sessionStorage.getItem("currentPage");
@@ -18,11 +22,14 @@ function NavBar() {
     setCurrentPage(page);
     sessionStorage.setItem("currentPage", page);
   }
-  const { user, userContextLogout } = useContext(userContext);
+
+  function openNav() {
+    setOpenMenu((prev) => !prev);
+  }
 
   return (
     <div className={styles.navcontainer}>
-      <div className={styles["nav-left"]}>
+      <div className={styles[`nav-left`]}>
         <Text
           className={styles.navtitle}
           fw={700}
@@ -37,7 +44,10 @@ function NavBar() {
           <img src={tt_bat} alt="table tennis bat" className={styles.navimg} />
         </div>
       </div>
-      <Group className={styles["nav-mid"]} justify="center">
+      <Flex
+        className={`${styles["nav-mid"]} ${openMenu ? styles["nav-open"] : ""}`}
+        justify="center"
+      >
         <Link className={styles.navlink} to="/">
           <Button
             classNames={{
@@ -90,7 +100,7 @@ function NavBar() {
             More Info
           </Button>
         </Link>
-      </Group>
+      </Flex>
       <Group
         className={styles["nav-right"]}
         justify="flex-end"
@@ -163,6 +173,16 @@ function NavBar() {
           </Menu>
         )}
       </Group>
+      <Burger
+        opened={opened}
+        size="lg"
+        className={styles["nav-burger"]}
+        onClick={() => {
+          toggle();
+          openNav();
+        }}
+        aria-label="Toggle navigation"
+      />
     </div>
   );
 }

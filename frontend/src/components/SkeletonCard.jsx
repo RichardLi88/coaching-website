@@ -1,6 +1,6 @@
 import { Card, Button, Flex, Skeleton } from "@mantine/core";
 
-function SkeletonCard() {
+function SkeletonCard({ buttonText }) {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder w="100%" h="100%">
       <Flex direction="column" justify="space-between" w="100%" h="100%">
@@ -23,7 +23,7 @@ function SkeletonCard() {
               window.location.href = `https://www.youtube.com/watch?v=${data.videoId}`;
             }}
           >
-            Watch now
+            {buttonText}
           </Button>
         </Flex>
       </Flex>

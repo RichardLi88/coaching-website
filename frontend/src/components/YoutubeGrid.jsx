@@ -36,7 +36,7 @@ function YoutubeGrid() {
           })}
         {!loaded &&
           Array.from({ length: 12 }).map((_, index) => {
-            return <SkeletonCard key={index} />;
+            return <SkeletonCard key={index} buttonText="Watch now" />;
           })}
       </SimpleGrid>
     </Flex>

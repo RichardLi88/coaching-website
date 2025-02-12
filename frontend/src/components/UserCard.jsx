@@ -9,6 +9,7 @@ function UserCard({ user }) {
       p={20}
       className={styles["container"]}
       my={10}
+      bg="white"
     >
       <Flex>
         <Flex direction="column" gap={10} mr="10">

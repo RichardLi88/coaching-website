@@ -25,7 +25,7 @@ function Admin() {
           w="84vw"
           mx="8vw"
           h="90vh"
-          bg="white"
+          bg="lightblue"
         >
           <Title ta="center">List of Users</Title>
           {users.map((user) => {

@@ -21,7 +21,7 @@ function YoutubeGrid() {
       });
       setVideos(filteredVideos);
       setTimeout(() => {
-        setLoaded(false);
+        setLoaded(true);
       }, 500);
     }
     getVideos();

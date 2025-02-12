@@ -184,7 +184,11 @@ function LessonModal({ data }) {
           btnClicked();
           open();
         }}
-      >{`Book with ${data.coach}`}</Button>
+      >
+        {data.coach === "No coach"
+          ? "Inquire now"
+          : `Inquire about ${data.coach}`}
+      </Button>
     </>
   );
 }

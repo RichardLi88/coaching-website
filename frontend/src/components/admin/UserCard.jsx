@@ -9,18 +9,21 @@ function UserCard({ user }) {
       p={20}
       className={styles["container"]}
       my={10}
+      mx={5}
       bg="white"
     >
-      <Flex>
+      <Flex className={styles["text-container"]}>
         <Flex direction="column" gap={10} mr="10">
-          <Text>
+          <Text className={styles["responsive-remove"]}>
             <strong>Id:</strong> {`${user._id}`}
           </Text>
           <Text>
             <strong>Username:</strong> {`${user.username}`}
           </Text>
         </Flex>
-        <strong>Email:</strong> {`${user.email}`}
+        <Text className={styles["responsive-remove"]}>
+          <strong>Email:</strong> {`${user.email}`}
+        </Text>
       </Flex>
       <Flex>
         <DeleteUserModal user={user} />

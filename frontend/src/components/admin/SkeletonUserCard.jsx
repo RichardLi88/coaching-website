@@ -8,6 +8,7 @@ function SkeletonUserCard() {
       p={20}
       className={styles["container"]}
       my={10}
+      mx={5}
       bg="white"
     >
       <Flex direction="column" gap={10} mr="10" w="100%">

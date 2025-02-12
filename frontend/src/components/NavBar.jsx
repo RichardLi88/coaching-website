@@ -7,6 +7,28 @@ import { userContext } from "../contexts/UserContext";
 import { IconSettings, IconTrash, IconUser } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 
+const navItems = [
+  { style: styles.navlink, currentPage: "home", to: "/", name: "Home" },
+  {
+    style: styles.navlink,
+    currentPage: "lessons",
+    to: "/lessons",
+    name: "Lessons",
+  },
+  {
+    style: styles.navlink,
+    currentPage: "more",
+    to: "/more",
+    name: "More Info",
+  },
+  {
+    style: styles.navlink,
+    currentPage: "admin",
+    to: "/admin",
+    name: "Admin Panel",
+    reqAdmin: true,
+  },
+];
 function NavBar() {
   const [currentPage, setCurrentPage] = useState("home");
   const [opened, { toggle }] = useDisclosure();
@@ -48,46 +70,26 @@ function NavBar() {
         className={`${styles["nav-mid"]} ${openMenu ? styles["nav-open"] : ""}`}
         justify="space-evenly"
       >
-        <Link className={styles.navlink} to="/">
-          <Button
-            classNames={{
-              root: `${currentPage === "home" ? styles.focused : ""} ${
-                styles.navtab
-              }`,
-            }}
-            variant="subtle"
-            radius="xl"
-            onClick={() => {
-              changePage("home");
-            }}
-          >
-            Home
-          </Button>
-        </Link>
-        <Link className={styles.navlink} to="/lessons">
-          <Button
-            className={currentPage === "lessons" ? styles.focused : ""}
-            variant="subtle"
-            radius="xl"
-            onClick={() => {
-              changePage("lessons");
-            }}
-          >
-            Lessons
-          </Button>
-        </Link>
-        <Link className={styles.navlink} to="/more">
-          <Button
-            className={currentPage === "more" ? styles.focused : ""}
-            variant="subtle"
-            radius="xl"
-            onClick={() => {
-              changePage("more");
-            }}
-          >
-            More Info
-          </Button>
-        </Link>
+        {navItems.map((item) => {
+          if (!item?.isAdmin || (item?.isAdmin && user?.isAdmin)) {
+            return (
+              <Link className={item.style} to={item.to}>
+                <Button
+                  className={`${
+                    currentPage === item.currentPage ? styles.focused : ""
+                  }`}
+                  variant="subtle"
+                  radius="xl"
+                  onClick={() => {
+                    changePage(item.currentPage);
+                  }}
+                >
+                  {item.name}
+                </Button>
+              </Link>
+            );
+          }
+        })}
       </Flex>
       <Group
         className={styles["nav-right"]}

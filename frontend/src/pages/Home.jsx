@@ -13,8 +13,7 @@ function Home() {
     <>
       <Suspense>
         {!user && <HomePage />}
-        {user && user.isAdmin === false && <Member />}
-        {user && user.isAdmin === true && <Admin />}
+        {user && <Member />}
       </Suspense>
     </>
   );

@@ -50,10 +50,6 @@
   background-color: rgba(12, 148, 3, 0.2) !important;
 }
 
-.navtab {
-  transition: 150ms; 
-}
-
 .avatar {
   border-color: rgb(0, 140, 255);
   border-style: solid;

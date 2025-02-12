@@ -15,6 +15,7 @@ const MoreInfo = lazy(() => import("./pages/MoreInfo"));
 const Lessons = lazy(() => import("./pages/Lessons"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const Login = lazy(() => import("./pages/Login"));
+const Admin = lazy(() => import("./pages/Admin"));
 
 function App() {
   const { userContextGetUser } = useContext(userContext);
@@ -32,6 +33,7 @@ function App() {
             <Route path="/more" element={<MoreInfo />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </Suspense>
         <Footer />

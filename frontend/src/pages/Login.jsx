@@ -99,7 +99,7 @@ function Login() {
             {success && (
               <SuccessNotif
                 close={() => setSuccess(false)}
-                title={"Successfully signed up"}
+                title={"Successfully logged in"}
                 reason={`Welcome to Richard TT.`}
               />
             )}

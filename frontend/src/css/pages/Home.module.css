@@ -88,3 +88,12 @@
     font-size: 24px !important;
   }
 }
+
+.main-title {
+  animation: title-fade-in 5s;
+}
+
+@keyframes title-fade-in {
+  0% {opacity: 0; }
+  100% { opacity: 1;}
+}

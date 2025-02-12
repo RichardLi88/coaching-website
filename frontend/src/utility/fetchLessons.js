@@ -64,8 +64,6 @@ export async function getBestLesson() {
 }
 
 export async function updateLesson(values, id) {
-  console.log(id);
-  console.log(values);
   try {
     const result = await fetch(
       `http://localhost:5000/api/lessons/update/${id}`,
@@ -100,7 +98,6 @@ export async function deleteLesson(id) {
     );
 
     const data = await result.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error.message);

@@ -9,7 +9,7 @@ import { useMediaQuery } from "@mantine/hooks";
 
 function Lessons() {
   const { user } = useContext(userContext);
-  const screen = useMediaQuery("(max-width: 1400px)");
+
   return (
     <>
       <LessonProvider>
@@ -24,13 +24,12 @@ function Lessons() {
             {user && user?.isAdmin && <EditLesson status="create" />}
           </Flex>
           <Flex
-            h={"50vh"}
             justify="space-between"
             align="center"
             gap={20}
-            className={styles["container"]}
+            className={styles["top-container"]}
           >
-            <Box className={styles["hot-desc"]} bg="white">
+            <Box className={styles["hot-desc"]} bg="white" m={20}>
               <Title c="blue" className={styles["title"]}>
                 What we offer?
               </Title>
@@ -54,7 +53,7 @@ function Lessons() {
                 get back to you to confirm as soon as possible!
               </Text>
             </Box>
-            <Flex w="80%" h="80%" justify="center">
+            <Flex w="100%" mah="80%" justify="center" p={20}>
               <Image
                 src="https://img.olympics.com/images/image/private/t_s_pog_staticContent_hero_lg/f_auto/primary/amda89zlqlmvwxv8fo7t"
                 className={styles["img"]}
@@ -76,7 +75,7 @@ function Lessons() {
           <Title align="center" order={1} c="blue">
             All lesson plans
           </Title>
-          <Flex fluid mt={10} display="flex" justify="center">
+          <Flex mt={10} display="flex" justify="center">
             <LessonGrid />
           </Flex>
         </Container>

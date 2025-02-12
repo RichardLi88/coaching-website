@@ -15,7 +15,6 @@ function NavBar() {
 
   useEffect(() => {
     const page = sessionStorage.getItem("currentPage");
-    console.log(page);
     if (page) setCurrentPage(page);
   });
 
@@ -120,47 +119,54 @@ function NavBar() {
             </Button>
           </Link>
         )}
-        {user && (
-          <Link className={styles.navlink} to="/">
-            <Button
-              variant="gradient"
-              onClick={() => {
-                changePage("home");
-                userContextLogout();
-              }}
+        <Flex
+          justify="center"
+          align="center"
+          gap={20}
+          className={styles["nav-btns"]}
+        >
+          {user && (
+            <Link className={styles.navlink} to="/">
+              <Button
+                variant="gradient"
+                onClick={() => {
+                  changePage("home");
+                  userContextLogout();
+                }}
+              >
+                Logout
+              </Button>
+            </Link>
+          )}
+          {user && (
+            <Menu
+              withArrow
+              transitionProps={{ transition: "rotate-right", duration: 150 }}
             >
-              Logout
-            </Button>
-          </Link>
-        )}
-        {user && (
-          <Menu
-            withArrow
-            transitionProps={{ transition: "rotate-right", duration: 150 }}
-          >
-            <Menu.Target>
-              <Avatar
-                radius="xl"
-                name={user.firstname + " " + user.lastname}
-                color="cyan"
-                size="lg"
-                className={styles["avatar"]}
-              />
-            </Menu.Target>
-            <Menu.Dropdown>
-              <Menu.Label>Options</Menu.Label>
-              <Menu.Item leftSection={<IconSettings size={14} />}>
-                Settings
-              </Menu.Item>
-              <Menu.Item leftSection={<IconUser size={14} />}>
-                Account Settings
-              </Menu.Item>
-              <Menu.Item color="red" leftSection={<IconTrash size={14} />}>
-                Delete my Account
-              </Menu.Item>
-            </Menu.Dropdown>
-          </Menu>
-        )}
+              <Menu.Target>
+                <Avatar
+                  radius="xl"
+                  name={user.firstname + " " + user.lastname}
+                  color="cyan"
+                  size="lg"
+                  className={styles["avatar"]}
+                />
+              </Menu.Target>
+              <Menu.Dropdown>
+                <Menu.Label>Options</Menu.Label>
+                <Menu.Item leftSection={<IconSettings size={14} />}>
+                  Settings
+                </Menu.Item>
+                <Menu.Item leftSection={<IconUser size={14} />}>
+                  Account Settings
+                </Menu.Item>
+                <Menu.Item color="red" leftSection={<IconTrash size={14} />}>
+                  Delete my Account
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
+          )}
+        </Flex>
       </Group>
       <Burger
         opened={opened}

@@ -95,5 +95,14 @@
   .nav-left {
     display: none;
   }
+
+  .nav-btns {
+    flex-direction: row-reverse;
+  }
+
+  .nav-right {
+    justify-content: flex-start !important;
+    margin-left: 20px;
+  }
   
 }

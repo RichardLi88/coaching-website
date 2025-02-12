@@ -10,9 +10,7 @@ export const getYoutubeVideos = async (query) => {
         },
       }
     );
-
     const data = await result.json();
-    console.log(data);
     return data.items;
   } catch (err) {
     console.log(err);

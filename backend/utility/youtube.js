@@ -8,7 +8,7 @@ async function getYoutubeVideos(req) {
   const query = req.params.query;
   try {
     const results = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&order=relevance&q=${query}&type=videos&videoType=any&key=${youtubeKey}`,
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&order=relevance&q=${query}&relevanceLanguage=en&type=video&videoDefinition=high&videoDuration=medium&key=${youtubeKey}`,
       {
         method: "GET",
         headers: {
@@ -16,11 +16,13 @@ async function getYoutubeVideos(req) {
         },
       }
     );
-
-    data.data = await results.json();
-    console.log(data.data);
-    data.time = new Date();
-    return true;
+    if (results.ok) {
+      data.data = await results.json();
+      data.time = new Date();
+      return true;
+    }
+    console.log("Error:", results);
+    return false;
   } catch (err) {
     console.log(err.message);
   }
@@ -30,8 +32,7 @@ async function returnYoutubeVideos(req, res) {
   if (data && new Date(data.time).getDate() === new Date().getDate()) {
     return res.status(200).json(data.data);
   } else {
-    const result = getYoutubeVideos(req);
-    console.log("here");
+    const result = await getYoutubeVideos(req);
     if (result) {
       return res.status(200).json(data.data);
     }

@@ -137,7 +137,6 @@ export const logout = async (req, res) => {
   backend function to log the user out by removing the access and refresh tokens from the cookies, and remove the refreshtoken from database.
   */
   try {
-    console.log("here");
     res.cookie("accessToken", "", { maxAge: 1 });
     res.cookie("refreshToken", "", { maxAge: 1 });
     //removing refresh token

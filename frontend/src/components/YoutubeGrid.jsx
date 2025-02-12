@@ -10,7 +10,6 @@ function YoutubeGrid() {
   useEffect(() => {
     async function getVideos() {
       const result = await getYoutubeVideos("Table tennis");
-      console.log(result);
       const filteredVideos = result.map((video) => {
         return {
           channel: video.snippet.channelTitle,
@@ -22,8 +21,8 @@ function YoutubeGrid() {
       });
       setVideos(filteredVideos);
       setTimeout(() => {
-        setLoaded(true);
-      }, 350);
+        setLoaded(false);
+      }, 500);
     }
     getVideos();
   }, []);
@@ -33,7 +32,7 @@ function YoutubeGrid() {
       <SimpleGrid cols={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing="sm">
         {loaded &&
           videos.map((video) => {
-            return <YoutubeCard key={video.title} data={video} />;
+            return <YoutubeCard key={video.videoId} data={video} />;
           })}
         {!loaded &&
           Array.from({ length: 12 }).map((_, index) => {

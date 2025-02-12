@@ -20,8 +20,6 @@ function LessonProvider({ children }) {
       const data = await getLessons();
 
       const rankedLessons = data.sort((a, b) => b.clicked - a.clicked);
-      console.log(rankedLessons);
-
       setBestLesson(rankedLessons[0]);
     } catch (err) {
       console.log(err.message);

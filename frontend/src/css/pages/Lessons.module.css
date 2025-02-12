@@ -1,21 +1,26 @@
 .hot-desc {
-  width: 50%;
+  width: 80%;
   height: 80%;
-  background-color: rgb(0, 81, 255);
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-  opacity: 0.6;
+  border-radius: 100px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 30px;
 }
 
 .hot-container {
-  width: 50%;
-  height: 80%;
+  width: 80%;
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .popular-container {
-  width: 40%;
+  width: fit-content;
+  height: 80%;
   position: relative;
 
 }
@@ -32,4 +37,30 @@
   z-index: -1;
   border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0,0.5);
+}
+
+.none {
+  display: none;
+}
+
+.img {
+  object-fit: contain;
+}
+
+@media screen and (max-width: 1800px) {
+  .container {
+    height: fit-content !important;
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .hot-desc {
+    width: 100%;
+  }
 }

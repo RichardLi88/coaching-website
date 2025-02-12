@@ -91,12 +91,9 @@
 }
 
 @media  screen and (max-width: 550px) {
-  .imgcontainer {
-    display: none;
-  }
 
   .nav-left {
-    flex: 0;
+    display: none;
   }
   
 }

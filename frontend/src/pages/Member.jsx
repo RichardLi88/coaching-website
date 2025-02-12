@@ -1,3 +1,4 @@
+import { useMediaQuery } from "@mantine/hooks";
 import MemberSideBar from "../components/memberPortal/MemberSideBar";
 import Background from "../components/utility/Background";
 import { Flex } from "@mantine/core";
@@ -15,6 +16,7 @@ const TrainingHistory = lazy(() =>
 
 function Member() {
   const [active, setActive] = useState(0);
+  const screen = useMediaQuery("(max-width: 800px)");
   return (
     <Background>
       <Flex
@@ -24,6 +26,8 @@ function Member() {
         h={`80vh`}
         justify="flex-start"
         align="center"
+        pos="relative"
+        direction={screen ? "column" : "row"}
       >
         <MemberSideBar value={{ active, setActive }} />
         <Flex

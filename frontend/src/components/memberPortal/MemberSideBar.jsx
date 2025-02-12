@@ -1,11 +1,13 @@
-import { Box, NavLink } from "@mantine/core";
-
+import { Box, Flex, NavLink, Select } from "@mantine/core";
+import styles from "../../css/components/MemberC.module.css";
 import {
   IconChartBarPopular,
   IconDatabase,
   IconNotebook,
   IconChevronRight,
 } from "@tabler/icons-react";
+import { useMediaQuery } from "@mantine/hooks";
+import { useState } from "react";
 
 const items = [
   {
@@ -27,23 +29,46 @@ const items = [
 
 function MemberSideBar({ value }) {
   const { active, setActive } = value;
+  const screen = useMediaQuery("(max-width: 800px)");
+  const [val, setVal] = useState(null);
+
   return (
-    <Box w={`20%`} maw={`400px`}>
-      {items.map((item, index) => {
-        return (
-          <NavLink
-            href="#required-for-focus"
-            key={item.label}
-            variant="filled"
-            active={index === active}
-            label={item.label}
-            leftSection={<item.icon size={16} stroke={1.5} />}
-            rightSection={item.rightSection}
-            onClick={() => setActive(index)}
-          />
-        );
-      })}
-    </Box>
+    <>
+      <Box w={`20%`} maw={`400px`} display={screen ? "none" : ""}>
+        {items.map((item, index) => {
+          return (
+            <NavLink
+              href="#required-for-focus"
+              key={item.label}
+              variant="filled"
+              active={index === active}
+              label={item.label}
+              leftSection={<item.icon size={16} stroke={1.5} />}
+              rightSection={item.rightSection}
+              onClick={() => setActive(index)}
+            />
+          );
+        })}
+      </Box>
+      {screen && (
+        <Select
+          label="Options"
+          defaultValue={"0"}
+          display="inline-block"
+          mb={10}
+          data={[
+            { value: "0", label: "Training Volume" },
+            { value: "1", label: "Log Training" },
+            { value: "2", label: "Training log history" },
+          ]}
+          val={val ? val.value : null}
+          onChange={(_val, option) => {
+            console.log(_val);
+            setActive(parseInt(_val));
+          }}
+        />
+      )}
+    </>
   );
 }
 

@@ -2,8 +2,10 @@ import { BarChart } from "@mantine/charts";
 import { Flex, Title } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { getData } from "../../utility/training";
+import { useMediaQuery } from "@mantine/hooks";
 function TrainingVolume() {
   const [data, setData] = useState([]);
+  const screen = useMediaQuery("(max-width: 600px)");
   useEffect(() => {
     async function retrieveData() {
       const data = await getData();
@@ -21,7 +23,9 @@ function TrainingVolume() {
       justify="center"
       align="center"
     >
-      <Title mb={20}>Your table tennis in minutes last week</Title>
+      <Title mb={20} size={screen ? "30px" : "40px"}>
+        Your table tennis in minutes last week
+      </Title>
       <BarChart
         h={`100%`}
         w={`100%`}

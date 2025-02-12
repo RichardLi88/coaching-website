@@ -39,3 +39,19 @@ padding: 10px 20px 10px 20px;
   justify-content: space-between;
   align-items: center;
 }
+
+@media screen and (max-width: 900px ) {
+
+  .main-border {
+    width: 90%;
+    justify-content: center;
+  }
+
+  .main-box {
+    width: 100%;
+  }
+  .img-box {
+    display: none;
+  }
+
+}

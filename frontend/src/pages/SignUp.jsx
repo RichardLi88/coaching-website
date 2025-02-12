@@ -142,7 +142,7 @@ function SignUp() {
             />
           )}
         </Flex>
-        <Flex className={styles["main-box"]}>
+        <Flex className={`${styles["main-box"]} ${styles["img-box"]}`}>
           <Image className={styles["signup-img"]} src={recreational}></Image>
         </Flex>
       </Container>

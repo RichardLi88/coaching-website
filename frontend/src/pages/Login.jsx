@@ -1,4 +1,11 @@
-import { Flex, TextInput, PasswordInput, Title, Button } from "@mantine/core";
+import {
+  Flex,
+  TextInput,
+  PasswordInput,
+  Title,
+  Button,
+  Image,
+} from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import styles from "../css/pages/Login.module.css";
@@ -99,7 +106,9 @@ function Login() {
             )}
           </div>
         </form>
-        <Flex className={styles["login-right"]}></Flex>
+        <Flex className={styles["login-right"]} justify="center">
+          <Image src="https://www.chinadailyhk.com/upload/main/image/2024/08/09/70dc8e9fe1d5084c38a984e8a86c0a2f.png" />
+        </Flex>
       </div>
     </Background>
   );

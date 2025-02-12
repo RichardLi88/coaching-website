@@ -47,9 +47,8 @@ function Login() {
         console.log(data);
         setSuccess(true);
         userContextLogin(data);
+        sessionStorage.setItem("currentPage", "home");
         setTimeout(() => {
-          sessionStorage.setItem("currentPage", "home");
-
           navigate("/", { replace: true });
         }, 700);
       } else {

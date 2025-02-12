@@ -15,6 +15,7 @@ function NavBar() {
 
   useEffect(() => {
     const page = sessionStorage.getItem("currentPage");
+    console.log(page);
     if (page) setCurrentPage(page);
   });
 
@@ -46,7 +47,7 @@ function NavBar() {
       </div>
       <Flex
         className={`${styles["nav-mid"]} ${openMenu ? styles["nav-open"] : ""}`}
-        justify="center"
+        justify="space-evenly"
       >
         <Link className={styles.navlink} to="/">
           <Button
@@ -62,18 +63,6 @@ function NavBar() {
             }}
           >
             Home
-          </Button>
-        </Link>
-        <Link className={styles.navlink} to="/about">
-          <Button
-            className={currentPage === "about" ? styles.focused : ""}
-            variant="subtle"
-            radius="xl"
-            onClick={() => {
-              changePage("about");
-            }}
-          >
-            About
           </Button>
         </Link>
         <Link className={styles.navlink} to="/lessons">

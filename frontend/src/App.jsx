@@ -11,7 +11,6 @@ import { useContext, useEffect } from "react";
 import { userContext } from "./contexts/UserContext";
 import { lazy, Suspense } from "react";
 
-const About = lazy(() => import("./pages/About"));
 const MoreInfo = lazy(() => import("./pages/MoreInfo"));
 const Lessons = lazy(() => import("./pages/Lessons"));
 const SignUp = lazy(() => import("./pages/SignUp"));
@@ -29,7 +28,6 @@ function App() {
         <Suspense>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
             <Route path="/lessons" element={<Lessons />} />
             <Route path="/more" element={<MoreInfo />} />
             <Route path="/signup" element={<SignUp />} />

@@ -36,7 +36,7 @@ function Member() {
           bg="lightblue"
           justify="center"
           align="center"
-          p={50}
+          p={20}
         >
           <Suspense>
             {active === 0 && <TrainingVolume />}

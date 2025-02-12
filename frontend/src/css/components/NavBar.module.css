@@ -32,7 +32,7 @@
 
 .nav-mid {
   display: flex;
-  flex: 2;
+  flex: 1;
   max-width: 800px;
   background-color: rgba(12, 148, 3, 0.2);
   padding: 10px 20px 10px 20px;

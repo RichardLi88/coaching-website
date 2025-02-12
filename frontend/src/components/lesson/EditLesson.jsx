@@ -40,7 +40,7 @@ function EditLesson({ data, status }) {
         image: data.image,
       });
     }
-  }, []);
+  }, [opened]);
 
   const form = useForm({
     mode: "uncontrolled",

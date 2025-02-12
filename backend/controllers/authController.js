@@ -146,3 +146,13 @@ export const logout = async (req, res) => {
     res.status(500).json({ success: false, data: err.message });
   }
 };
+
+export const getUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    return res.status(200).json(users);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ success: false, data: err.message });
+  }
+};

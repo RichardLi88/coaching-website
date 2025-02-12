@@ -73,13 +73,14 @@ function NavBar() {
         {navItems.map((item) => {
           if (!item?.isAdmin || (item?.isAdmin && user?.isAdmin)) {
             return (
-              <Link className={item.style} to={item.to}>
+              <Link className={item.style} to={item.to} key={item.currentPage}>
                 <Button
                   className={`${
                     currentPage === item.currentPage ? styles.focused : ""
                   }`}
                   variant="subtle"
                   radius="xl"
+                  key={item.currentPage}
                   onClick={() => {
                     changePage(item.currentPage);
                   }}

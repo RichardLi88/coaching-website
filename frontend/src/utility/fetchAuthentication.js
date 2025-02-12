@@ -47,3 +47,19 @@ export async function logout() {
     console.log(err.message);
   }
 }
+
+export async function getUsers() {
+  try {
+    const response = await fetch("http://localhost:5000/api/user/get", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const processedData = await response.json();
+    return processedData;
+  } catch (err) {
+    console.log(err.message);
+  }
+}

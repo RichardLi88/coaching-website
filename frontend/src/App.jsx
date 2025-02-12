@@ -10,6 +10,7 @@ import Footer from "./components/utility/Footer";
 import { useContext, useEffect } from "react";
 import { userContext } from "./contexts/UserContext";
 import { lazy, Suspense } from "react";
+import AdminProvider from "./contexts/AdminContext";
 
 const MoreInfo = lazy(() => import("./pages/MoreInfo"));
 const Lessons = lazy(() => import("./pages/Lessons"));
@@ -25,18 +26,21 @@ function App() {
   return (
     <>
       <MantineProvider>
-        <NavBar />
-        <Suspense>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/lessons" element={<Lessons />} />
-            <Route path="/more" element={<MoreInfo />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
-        </Suspense>
-        <Footer />
+        <AdminProvider>
+          <NavBar />
+          <Suspense>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/lessons" element={<Lessons />} />
+              <Route path="/more" element={<MoreInfo />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<Login />} />
+
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </Suspense>
+          <Footer />
+        </AdminProvider>
       </MantineProvider>
     </>
   );

@@ -156,3 +156,20 @@ export const getUsers = async (req, res) => {
     res.status(500).json({ success: false, data: err.message });
   }
 };
+
+export const deleteUser = async (req, res) => {
+  try {
+    const user = req.user;
+    const id = req.params.id;
+    if (user.id === id || user.isAdmin) {
+      const result = await User.findByIdAndDelete(id);
+      return res.status(200).json({ success: true, data: result });
+    }
+    return res
+      .status(400)
+      .json({ success: false, data: "not authorised to remove user" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, data: err.message });
+  }
+};

@@ -71,7 +71,7 @@ function NavBar() {
         justify="space-evenly"
       >
         {navItems.map((item) => {
-          if (!item?.isAdmin || (item?.isAdmin && user?.isAdmin)) {
+          if (!item?.reqAdmin || (item?.reqAdmin && user?.isAdmin)) {
             return (
               <Link className={item.style} to={item.to} key={item.currentPage}>
                 <Button

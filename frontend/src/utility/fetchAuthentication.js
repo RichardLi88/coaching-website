@@ -63,3 +63,22 @@ export async function getUsers() {
     console.log(err.message);
   }
 }
+
+export async function deleteUser(id) {
+  try {
+    const response = await fetch(
+      `http://localhost:5000/api/user/delete/${id}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const processedData = await response.json();
+    return processedData;
+  } catch (err) {
+    console.log(err.message);
+  }
+}

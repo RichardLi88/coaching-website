@@ -1,6 +1,6 @@
-import { Flex, Button, Text } from "@mantine/core";
-import { IconTrash } from "@tabler/icons-react";
-import styles from "../css/components/UserCard.module.css";
+import { Flex, Text } from "@mantine/core";
+import styles from "../../css/components/UserCard.module.css";
+import DeleteUserModal from "./DeleteUserModal";
 
 function UserCard({ user }) {
   return (
@@ -23,9 +23,7 @@ function UserCard({ user }) {
         <strong>Email:</strong> {`${user.email}`}
       </Flex>
       <Flex>
-        <Button bg="red">
-          <IconTrash />
-        </Button>
+        <DeleteUserModal user={user} />
       </Flex>
     </Flex>
   );

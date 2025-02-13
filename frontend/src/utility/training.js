@@ -2,6 +2,7 @@ export const submitInquiry = async (data) => {
   try {
     const result = await fetch("http://localhost:5000/api/lessons/submit", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },

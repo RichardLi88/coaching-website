@@ -25,7 +25,7 @@ function UserCard({ user }) {
           <strong>Email:</strong> {`${user.email}`}
         </Text>
       </Flex>
-      <Flex>
+      <Flex align="center">
         <DeleteUserModal user={user} />
       </Flex>
     </Flex>

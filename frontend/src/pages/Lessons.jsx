@@ -5,7 +5,6 @@ import LessonProvider from "../contexts/LessonContext";
 import EditLesson from "../components/lesson/editLesson";
 import { useContext } from "react";
 import { userContext } from "../contexts/UserContext";
-import { useMediaQuery } from "@mantine/hooks";
 
 function Lessons() {
   const { user } = useContext(userContext);

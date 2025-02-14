@@ -140,7 +140,9 @@ export const logout = async (req, res) => {
     res.cookie("accessToken", "", { maxAge: 1 });
     res.cookie("refreshToken", "", { maxAge: 1 });
     //removing refresh token
-    RefreshToken.findOneAndDelete({ username: req.user.username });
+    const result = await RefreshToken.deleteMany({
+      username: req.user.username,
+    });
     res.status(200).json({ success: true, reason: "logged out successfully" });
   } catch (err) {
     res.status(500).json({ success: false, data: err.message });

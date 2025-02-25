@@ -1,4 +1,4 @@
-import { Card, Image, Text, Button, Flex, Skeleton } from "@mantine/core";
+import { Card, Image, Text, Button, Flex } from "@mantine/core";
 
 function YoutubeCard({ data }) {
   return (

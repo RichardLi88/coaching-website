@@ -6,7 +6,7 @@ function SkeletonCard({ buttonText }) {
       <Flex direction="column" justify="space-between" w="100%" h="100%">
         <Flex direction="column">
           <Card.Section>
-            <Skeleton height="20vh" width="20vw" mb="20" />
+            <Skeleton height="320" mb="20" />
           </Card.Section>
 
           <Skeleton height={16} radius="xl" mb="5" />

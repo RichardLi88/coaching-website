@@ -82,6 +82,7 @@ export const getData = async () => {
     }
 
     const rawData = await result.json();
+
     rawData.data.forEach((data) => {
       const newDate = formatDate(new Date(data.date));
 

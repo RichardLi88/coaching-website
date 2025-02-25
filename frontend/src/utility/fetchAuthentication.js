@@ -1,12 +1,17 @@
+url = "https://webdev-2kdh.onrender.com";
+
 export async function signUp(data) {
   try {
-    const response = await fetch("http://localhost:5000/api/user/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "https://webdev-2kdh.onrender.com/api/user/signup",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     const processedData = await response.json();
     return processedData;
@@ -17,14 +22,17 @@ export async function signUp(data) {
 
 export async function login(data) {
   try {
-    const response = await fetch("http://localhost:5000/api/user/login", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      "https://webdev-2kdh.onrender.com/api/user/login",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
     const processedData = await response.json();
     return processedData;
   } catch (err) {
@@ -34,13 +42,16 @@ export async function login(data) {
 
 export async function logout() {
   try {
-    const response = await fetch("http://localhost:5000/api/user/logout", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://webdev-2kdh.onrender.com/api/user/logout",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const processedData = await response.json();
     return processedData;
   } catch (err) {
@@ -50,13 +61,16 @@ export async function logout() {
 
 export async function getUsers() {
   try {
-    const response = await fetch("http://localhost:5000/api/user/get", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://webdev-2kdh.onrender.com/api/user/get",
+      {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const processedData = await response.json();
     return processedData;
   } catch (err) {
@@ -67,7 +81,7 @@ export async function getUsers() {
 export async function deleteUser(id) {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/user/delete/${id}`,
+      `https://webdev-2kdh.onrender.com/api/user/delete/${id}`,
       {
         method: "DELETE",
         credentials: "include",

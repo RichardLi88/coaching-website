@@ -1,11 +1,14 @@
 export async function getLessons() {
   try {
-    const result = await fetch("http://localhost:5000/api/lessons/fetch", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const result = await fetch(
+      "https://webdev-2kdh.onrender.com/api/lessons/fetch",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!result.ok) {
       console.log("error");
@@ -22,7 +25,7 @@ export async function getLessons() {
 export async function updateClicked(id) {
   try {
     const result = await fetch(
-      `http://localhost:5000/api/lessons/update/clicked/${id}`,
+      `https://webdev-2kdh.onrender.com/api/lessons/update/clicked/${id}`,
       {
         method: "PUT",
         headers: {
@@ -44,13 +47,16 @@ export async function updateClicked(id) {
 
 export async function getBestLesson() {
   try {
-    const result = await fetch("http://localhost:5000/api/lessons/fetch/best", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const result = await fetch(
+      "https://webdev-2kdh.onrender.com/api/lessons/fetch/best",
+      {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!result.ok) {
       console.log("error");
@@ -66,7 +72,7 @@ export async function getBestLesson() {
 export async function updateLesson(values, id) {
   try {
     const result = await fetch(
-      `http://localhost:5000/api/lessons/update/${id}`,
+      `https://webdev-2kdh.onrender.com/api/lessons/update/${id}`,
       {
         method: "PUT",
         credentials: "include",
@@ -87,7 +93,7 @@ export async function updateLesson(values, id) {
 export async function deleteLesson(id) {
   try {
     const result = await fetch(
-      `http://localhost:5000/api/lessons/delete/${id}`,
+      `https://webdev-2kdh.onrender.com/api/lessons/delete/${id}`,
       {
         method: "DELETE",
         credentials: "include",
@@ -106,14 +112,17 @@ export async function deleteLesson(id) {
 
 export async function createLesson(values) {
   try {
-    const result = await fetch(`http://localhost:5000/api/lessons/create`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
+    const result = await fetch(
+      `https://webdev-2kdh.onrender.com/api/lessons/create`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
 
     const data = await result.json();
     return data;

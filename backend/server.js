@@ -14,7 +14,7 @@ app.use(cookieParser());
 dotenv.config();
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: true,
   credentials: true,
   allowedHeaders: "Content-Type,Authorization",
 };
@@ -28,5 +28,5 @@ app.use("/api/youtube", youtubeRouter);
 
 app.listen(5000, () => {
   connectDB();
-  console.log("Connected to http://localhost:5000");
+  console.log("Connected to https://webdev-2kdh.onrender.com");
 });

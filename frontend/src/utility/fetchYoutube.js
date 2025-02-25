@@ -1,7 +1,7 @@
 export const getYoutubeVideos = async (query) => {
   try {
     const result = await fetch(
-      `http://localhost:5000/api/youtube/get/${query}`,
+      `https://webdev-2kdh.onrender.com/api/youtube/get/${query}`,
       {
         method: "GET",
         credentials: "include",

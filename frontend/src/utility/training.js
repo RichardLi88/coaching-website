@@ -1,13 +1,16 @@
 export const submitInquiry = async (data) => {
   try {
-    const result = await fetch("http://localhost:5000/api/lessons/submit", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const result = await fetch(
+      "https://webdev-2kdh.onrender.com/api/lessons/submit",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     const processedData = await result.json();
     return processedData;
@@ -18,14 +21,17 @@ export const submitInquiry = async (data) => {
 
 export const submitTrainingLog = async (data) => {
   try {
-    const result = await fetch(`http://localhost:5000/api/training/create`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const result = await fetch(
+      `https://webdev-2kdh.onrender.com/api/training/create`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     const processedData = await result.json();
     return processedData;
@@ -49,7 +55,7 @@ export function formatDate(date) {
 export const getData = async () => {
   try {
     const result = await fetch(
-      `http://localhost:5000/api/training/fetch/week`,
+      `https://webdev-2kdh.onrender.com/api/training/fetch/week`,
       {
         method: "GET",
         credentials: "include",
@@ -102,7 +108,7 @@ export const getTrainingHistory = async (current) => {
   console.log("OMG", current);
   try {
     const result = await fetch(
-      `http://localhost:5000/api/training/get/history/${current}`,
+      `https://webdev-2kdh.onrender.com/api/training/get/history/${current}`,
       {
         method: "GET",
         credentials: "include",

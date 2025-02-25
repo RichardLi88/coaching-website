@@ -1,6 +1,6 @@
 import { Card, Text, Group, Image, Flex } from "@mantine/core";
 import LessonModal from "../popups/LessonModal";
-import EditLesson from "./editLesson";
+import EditLesson from "./EditLesson";
 import DeleteModal from "./DeleteModal";
 import { useContext } from "react";
 import { userContext } from "../../contexts/UserContext";

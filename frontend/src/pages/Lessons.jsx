@@ -2,7 +2,7 @@ import { Box, Container, Flex, Title, Text, Image } from "@mantine/core";
 import styles from "../css/pages/Lessons.module.css";
 import LessonGrid from "../components/lesson/LessonGrid";
 import LessonProvider from "../contexts/LessonContext";
-import EditLesson from "../components/lesson/editLesson";
+import EditLesson from "../components/lesson/EditLesson";
 import { useContext } from "react";
 import { userContext } from "../contexts/UserContext";
 

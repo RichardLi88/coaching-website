@@ -18,6 +18,7 @@ const corsOptions = {
     "http://localhost:5173",
     "https://richard-table-tennis.onrender.com",
   ],
+  credentials: true,
   allowedHeaders: "Content-Type,Authorization",
 };
 

@@ -14,7 +14,7 @@ app.use(cookieParser());
 dotenv.config();
 
 const corsOptions = {
-  origin: true,
+  origin: "*",
   credentials: true,
   allowedHeaders: "Content-Type,Authorization",
 };

@@ -1,4 +1,4 @@
-url = "https://webdev-2kdh.onrender.com";
+const url = "https://webdev-2kdh.onrender.com";
 
 export async function signUp(data) {
   try {

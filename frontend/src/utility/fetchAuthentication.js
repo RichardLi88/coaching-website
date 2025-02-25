@@ -26,7 +26,7 @@ export async function login(data) {
       "https://webdev-2kdh.onrender.com/api/user/login",
       {
         method: "POST",
-        credentials: include,
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

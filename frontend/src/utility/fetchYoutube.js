@@ -4,7 +4,6 @@ export const getYoutubeVideos = async (query) => {
       `https://webdev-2kdh.onrender.com/api/youtube/get/${query}`,
       {
         method: "GET",
-        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

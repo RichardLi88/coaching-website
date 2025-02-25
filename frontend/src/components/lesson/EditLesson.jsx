@@ -1,7 +1,6 @@
 import {
   Button,
   Flex,
-  Loader,
   LoadingOverlay,
   Modal,
   NumberInput,

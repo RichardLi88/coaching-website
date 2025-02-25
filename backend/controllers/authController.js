@@ -6,6 +6,8 @@ import {
 } from "../utility/jwtAuth.js";
 import RefreshToken from "../schemas/refreshToken.js";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 export const signUp = async (req, res) => {
   /*
   backend function used to register details after validation including hashing password with bcrypt
@@ -103,11 +105,15 @@ export const login = async (req, res) => {
       res.cookie("accessToken", accessToken, {
         maxAge: 15 * 60 * 1000,
         httpOnly: true,
+        secure: isProduction, // Secure only in production (requires HTTPS)
+        sameSite: isProduction ? "None" : "Lax",
       });
 
       res.cookie("refreshToken", refreshToken, {
         maxAge: 60 * 60 * 1000 * 24 * 7,
         httpOnly: true,
+        secure: isProduction, // Secure only in production (requires HTTPS)
+        sameSite: isProduction ? "None" : "Lax",
       });
 
       //storing new refresh token to db

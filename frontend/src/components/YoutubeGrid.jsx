@@ -27,9 +27,13 @@ function YoutubeGrid() {
     getVideos();
   }, []);
   return (
-    <Flex direction="column" gap={20} p={20} align="center">
+    <Flex direction="column" gap={20} p={20} align="center" w="100%">
       <Title>Other videos to watch!</Title>
-      <SimpleGrid cols={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing="sm" w="90%">
+      <SimpleGrid
+        cols={{ base: 1, md: 2, lg: 3, xl: 4 }}
+        spacing="sm"
+        w={loaded ? "" : "90%"}
+      >
         {loaded &&
           videos.map((video) => {
             return <YoutubeCard key={video.videoId} data={video} />;

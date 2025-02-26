@@ -74,7 +74,7 @@ function Lessons() {
           <Title align="center" order={1} c="blue">
             All lesson plans
           </Title>
-          <Flex mt={10} display="flex" justify="center">
+          <Flex mt={10} display="flex" justify="center" w="100%">
             <LessonGrid />
           </Flex>
         </Container>

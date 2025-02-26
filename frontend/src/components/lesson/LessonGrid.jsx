@@ -19,7 +19,11 @@ function LessonGrid() {
   }, []);
 
   return (
-    <SimpleGrid cols={{ base: 1, sm: 2, md: 3, lg: 5 }} spacing="sm">
+    <SimpleGrid
+      cols={{ base: 1, sm: 2, md: 3, lg: 5 }}
+      spacing="sm"
+      w={loaded ? "" : "90%"}
+    >
       {loaded &&
         lessons.map((lesson) => {
           return <LessonCard key={lesson._id} data={lesson} />;

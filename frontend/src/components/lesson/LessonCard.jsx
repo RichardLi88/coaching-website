@@ -1,9 +1,14 @@
 import { Card, Text, Group, Image, Flex } from "@mantine/core";
 import LessonModal from "../popups/LessonModal";
 import EditLesson from "./EditLesson";
-import DeleteModal from "./DeleteModal";
+import DeleteModal from "../popups/DeleteModal";
 import { useContext } from "react";
 import { userContext } from "../../contexts/UserContext";
+
+const message = {
+  title: "Delete this lesson",
+  body: "Are you sure you want to delete this lesson?",
+};
 
 function LessonCard({ data }) {
   const { user } = useContext(userContext);
@@ -25,7 +30,9 @@ function LessonCard({ data }) {
         <Flex mt="md" gap={10}>
           <LessonModal data={data} />
           {user && user.isAdmin && <EditLesson data={data} status="edit" />}
-          {user && user.isAdmin && <DeleteModal data={data} />}
+          {user && user.isAdmin && (
+            <DeleteModal data={data} message={message} />
+          )}
         </Flex>
       </Flex>
     </Card>

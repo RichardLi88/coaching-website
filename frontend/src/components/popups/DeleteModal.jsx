@@ -5,7 +5,7 @@ import { deleteLesson } from "../../utility/fetchLessons";
 import { useContext } from "react";
 import { lessonContext } from "../../contexts/LessonContext";
 
-function DeleteModal({ data }) {
+function DeleteModal({ data, message }) {
   const [opened, { open, close }] = useDisclosure(false);
   const { retrieveLessons, getBestLesson } = useContext(lessonContext);
   async function deleteHandler() {
@@ -16,14 +16,9 @@ function DeleteModal({ data }) {
   }
   return (
     <>
-      <Modal
-        opened={opened}
-        onClose={close}
-        title="Delete this lesson"
-        centered
-      >
+      <Modal opened={opened} onClose={close} title={message.title} centered>
         <Flex direction="column">
-          Are you sure you want to remove this lesson?
+          {message.body}
           <Flex gap={20} justify="end">
             <Button
               variant="gradient"

@@ -155,18 +155,6 @@ function NavBar() {
                   className={styles["avatar"]}
                 />
               </Menu.Target>
-              <Menu.Dropdown>
-                <Menu.Label>Options</Menu.Label>
-                <Menu.Item leftSection={<IconSettings size={14} />}>
-                  Settings
-                </Menu.Item>
-                <Menu.Item leftSection={<IconUser size={14} />}>
-                  Account Settings
-                </Menu.Item>
-                <Menu.Item color="red" leftSection={<IconTrash size={14} />}>
-                  Delete my Account
-                </Menu.Item>
-              </Menu.Dropdown>
             </Menu>
           )}
         </Flex>

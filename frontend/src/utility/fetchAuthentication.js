@@ -1,9 +1,9 @@
-const url = "https://webdev-2kdh.onrender.com";
+const url = "http://localhost:5000";
 
 export async function signUp(data) {
   try {
     const response = await fetch(
-      "https://webdev-2kdh.onrender.com/api/user/signup",
+      "http://localhost:5000/api/user/signup",
       {
         method: "POST",
         headers: {
@@ -23,7 +23,7 @@ export async function signUp(data) {
 export async function login(data) {
   try {
     const response = await fetch(
-      "https://webdev-2kdh.onrender.com/api/user/login",
+      "http://localhost:5000/api/user/login",
       {
         method: "POST",
         credentials: "include",
@@ -43,7 +43,7 @@ export async function login(data) {
 export async function logout() {
   try {
     const response = await fetch(
-      "https://webdev-2kdh.onrender.com/api/user/logout",
+      "http://localhost:5000/api/user/logout",
       {
         method: "POST",
         credentials: "include",
@@ -62,7 +62,7 @@ export async function logout() {
 export async function getUsers() {
   try {
     const response = await fetch(
-      "https://webdev-2kdh.onrender.com/api/user/get",
+      "http://localhost:5000/api/user/get",
       {
         method: "GET",
         credentials: "include",
@@ -81,7 +81,7 @@ export async function getUsers() {
 export async function deleteUser(id) {
   try {
     const response = await fetch(
-      `https://webdev-2kdh.onrender.com/api/user/delete/${id}`,
+      `http://localhost:5000/api/user/delete/${id}`,
       {
         method: "DELETE",
         credentials: "include",

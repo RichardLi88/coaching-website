@@ -31,5 +31,5 @@ app.use("/api/youtube", youtubeRouter);
 
 app.listen(5000, () => {
   connectDB();
-  console.log("Connected to https://webdev-2kdh.onrender.com");
+  console.log("Connected to http://localhost:5000");
 });
